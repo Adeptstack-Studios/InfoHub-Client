@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:InfoHub"
+             x:Class="InfoHub.SensorsPage"
+             Title="Sensors">
+    <Grid >
+        <RefreshView x:Name="refresh" Refreshing="refresh_Refreshing" Margin="0,0,0,60">
+            <ScrollView x:Name="scroll">
+                <FlexLayout JustifyContent="SpaceAround" x:Name="flexl" Wrap="Wrap" Padding="30,0" VerticalOptions="Center">
+
+                </FlexLayout>
+            </ScrollView>
+        </RefreshView>
+
+        <Button Loaded="AddButton_Loaded" Text="+" x:Name="AddButton" Clicked="AddButton_Clicked" HorizontalOptions="End" VerticalOptions="End" Margin="40,20" WidthRequest="50" HeightRequest="60" CornerRadius="20" FontAttributes="Bold" FontAutoScalingEnabled="True" FontSize="20" />
+
+        <Grid BackgroundColor="#bb000000" x:Name="AddDialog" IsVisible="False" >
+            <ScrollView WidthRequest="400">
+                <Border StrokeThickness="2" StrokeShape="RoundRectangle 28" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="400" WidthRequest="300" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" >
+                    <Grid >
+                        <VerticalStackLayout >
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Add new Sensor" Margin="0,15" FontSize="18" />
+
+                            <Entry Placeholder="Name" x:Name="nameEntry" Margin="10" />
+                            <Entry Placeholder="IP address" x:Name="ipEntry" Margin="10" />
+                            <Entry Placeholder="Port" x:Name="portEntry" Margin="10" />
+                            <Picker SelectedIndex="0" x:Name="typePicker" Title="Choose a Type" Margin="10" >
+                                <Picker.Items>
+                                    <x:String>Temperature/Humidity/Pressure</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </VerticalStackLayout>
+                        <FlexLayout JustifyContent="SpaceAround" VerticalOptions="End" Margin="15" >
+                            <Button Text="Cancel" x:Name="CancelSensorBtn" Clicked="CancelSensorBtn_Clicked" HeightRequest="50"  CornerRadius="15" />
+                            <Button Text="Save" x:Name="SaveSensorBtn" Clicked="SaveSensorBtn_Clicked" HeightRequest="50" CornerRadius="15" />
+                        </FlexLayout>
+                    </Grid>
+                </Border>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -2,23 +2,16 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
+            Data.Create();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void NavToSensorsBtn_Clicked(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            Navigation.PushAsync(new SensorsPage());
         }
     }
 }

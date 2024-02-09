@@ -52,4 +52,22 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="SensorCardTHP.xaml.cs">
+	    <DependentUpon>SensorCardTHP.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SensorsPage.xaml.cs">
+	    <DependentUpon>SensorsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="SensorCardTHP.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SensorsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
