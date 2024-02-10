@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InfoHub.MainPage">
+             x:Class="InfoHub.MainPage"
+             Title="Home">
 
     <RefreshView x:Name="refresh" Refreshing="refresh_Refreshing">
         <ScrollView >
@@ -16,8 +17,8 @@
                         <HorizontalStackLayout HorizontalOptions="Center">
                             <Image Source="Resources/Images/fog.png" x:Name="weatherIcon" />
                             <VerticalStackLayout VerticalOptions="Center" >
-                                <Label x:Name="tempCrt" Text="12°C" FontSize="38" Margin="10,0,0,0" />
-                                <Label x:Name="weatherCodeCrt" Text="Bewölkt" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,0,0" />
+                                <Label x:Name="tempCrt" Text="?°C" FontSize="38" Margin="10,0,0,0" />
+                                <Label x:Name="weatherCodeCrt" Text="?" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,0,0" />
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
 
@@ -28,7 +29,7 @@
                                         <Image Source="Resources/Images/thermometer.png" WidthRequest="15" HeightRequest="15" />
                                         <Label Text="Temperature" FontSize="11.5" Margin="2.5,0" />
                                     </HorizontalStackLayout>
-                                    <Label x:Name="tempMinMax" Text="-18.3°C / -12.9°C" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label x:Name="tempMinMax" Text="-?°C / -?°C" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Center" />
                                 </Grid>
                             </Border>
 
@@ -38,7 +39,7 @@
                                         <Image Source="Resources/Images/feuchtigkeitsmesser.png" WidthRequest="15" HeightRequest="15" />
                                         <Label Text="Humidity" FontSize="11.5" Margin="5,0" />
                                     </HorizontalStackLayout>
-                                    <Label x:Name="humidityCrt" Text="75%" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                    <Label x:Name="humidityCrt" Text="?%" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
                                 </Grid>
                             </Border>
 
@@ -48,7 +49,7 @@
                                         <Image Source="Resources/Images/luftdruck.png" WidthRequest="15" HeightRequest="15" />
                                         <Label Text="Surface pressure" FontSize="11.5" Margin="5,0" />
                                     </HorizontalStackLayout>
-                                    <Label x:Name="pressureSurfaceCrt" Text="9999hPa" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                    <Label x:Name="pressureSurfaceCrt" Text="?hPa" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
                                 </Grid>
                             </Border>
 
@@ -58,7 +59,7 @@
                                         <Image Source="Resources/Images/wind.png" WidthRequest="15" HeightRequest="15" />
                                         <Label Text="Wind speed" FontSize="11.5" Margin="5,0" />
                                     </HorizontalStackLayout>
-                                    <Label x:Name="windSpeedMax" Text="999km/h" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                    <Label x:Name="windSpeedMax" Text="?km/h" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
                                 </Grid>
                             </Border>
                         </FlexLayout>

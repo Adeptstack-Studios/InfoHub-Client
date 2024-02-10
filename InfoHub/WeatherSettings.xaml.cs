@@ -24,12 +24,19 @@ public partial class WeatherSettings : ContentPage
             Latitude = latitude.Text,
             Main = isMain.IsChecked
         });
+
+        location.Text = "";
+        longitude.Text = "";
+        latitude.Text = "";
+        isMain.IsChecked = false;
+
         Data.SaveSettings(Utilities.settings);
         ShowLocations();
     }
 
     void ShowLocations()
     {
+        weatherLocationData.Children.Clear();
         foreach (var item in Utilities.settings.WeatherSettings)
         {
             WeatherLocationsView view = new WeatherLocationsView

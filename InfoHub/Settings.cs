@@ -2,7 +2,7 @@
 {
     public class Settings
     {
-        public List<WeatherLocations> WeatherSettings { get; set; }
+        public List<WeatherLocations> WeatherSettings { get; set; } = new List<WeatherLocations>();
     }
 
     public class WeatherLocations

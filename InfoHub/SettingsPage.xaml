@@ -4,6 +4,6 @@
              x:Class="InfoHub.SettingsPage"
              Title="Settings">
     <VerticalStackLayout>
-        <Button x:Name="WeatherSettings" Text="Weather settings" Clicked="WeatherSettings_Clicked" />
+        <Button Margin="20" HeightRequest="80" CornerRadius="15" BorderWidth="2" BorderColor="Gray" x:Name="WeatherSettings" Text="Weather settings" Clicked="WeatherSettings_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

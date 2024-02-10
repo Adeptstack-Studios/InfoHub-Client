@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InfoHub.WeatherLocationsView">
+             x:Class="InfoHub.WeatherLocationsView"
+             x:Name="this">
     
-        <Border HeightRequest="50" StrokeShape="RoundRectangle 28" BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" Margin="0,40,0,0" >
+        <Border HeightRequest="60" StrokeShape="RoundRectangle 28" Margin="20,20,20,0" BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" >
             <Grid BindingContext="{x:Reference this}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -12,14 +13,14 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <Label Text="{Binding Name, FallbackValue='Name'}" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Label Text="{Binding Name, FallbackValue='Name'}" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <Label Text="{Binding Latitude, FallbackValue='Latitude'}" Margin="11,0"  />
+                    <Label Text="{Binding Latitude, FallbackValue='Latitude'}" Margin="11,0" VerticalOptions="Center" HorizontalOptions="Center"  />
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="2">
-                    <Label Text="{Binding Longitude, FallbackValue='Longitude'}" Margin="11,0"  />
+                <Label Text="{Binding Longitude, FallbackValue='Longitude'}" Margin="11,0" VerticalOptions="Center" HorizontalOptions="Center" />
                 </Grid>
             </Grid>
         </Border>

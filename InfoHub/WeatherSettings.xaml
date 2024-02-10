@@ -2,21 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InfoHub.WeatherSettings"
-             Title="WeatherSettings">
-    <VerticalStackLayout>
-        <FlexLayout x:Name="weatherLocationData" >
-            
-        </FlexLayout>
+             Title="Weather settings">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0" >
+            <VerticalStackLayout x:Name="weatherLocationData" >
 
-        <VerticalStackLayout >
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Margin=" 20" Grid.Row="1" >
+            <Label Text="Add location:" FontSize="Title" FontAttributes="Bold" />
             <Entry Placeholder="Locationname" x:Name="location" />
             <Entry Placeholder="Latitude" x:Name="latitude" />
             <Entry Placeholder="Longitude" x:Name="longitude" />
             <HorizontalStackLayout >
                 <CheckBox x:Name="isMain" />
-                <Label Text="Main location" />
+                <Label Text="Main location" VerticalOptions="Center" />
             </HorizontalStackLayout>
             <Button Text="Save" x:Name="SaveBtn" Clicked="SaveBtn_Clicked" />
         </VerticalStackLayout>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

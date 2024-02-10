@@ -11,16 +11,30 @@
             Utilities.settings = Data.LoadSettings();
             Utilities.Timer();
 
-            RefreshWeatherData();
-
+            MainWeatherLocation();
 
             Thread threadSensorData = new Thread(new ThreadStart(ThreadGetSensorData));
             threadSensorData.Start();
         }
 
-        void RefreshWeatherData()
+        void MainWeatherLocation()
         {
-            WeatherData weather = Web.GetWeatherData("51.2504", "6.9754");
+            for (int i = 0; i < Utilities.settings.WeatherSettings.Count; i++)
+            {
+                if (Utilities.settings.WeatherSettings[i].Main == true)
+                {
+                    RefreshWeatherData(Utilities.settings.WeatherSettings[i].Latitude, Utilities.settings.WeatherSettings[i].Longitude);
+                    this.Title = Utilities.settings.WeatherSettings[i].Name;
+                    refresh.IsRefreshing = false;
+                    return;
+                }
+            }
+            refresh.IsRefreshing = false;
+        }
+
+        void RefreshWeatherData(string latitude, string longitude)
+        {
+            WeatherData weather = Web.GetWeatherData(latitude, longitude);
             tempCrt.Text = weather.current.temperature_2m.ToString() + weather.current_units.temperature_2m;
             tempMinMax.Text = weather.daily.temperature_2m_min[0].ToString() + weather.daily_units.temperature_2m_min + " / " + weather.daily.temperature_2m_max[0].ToString() + weather.daily_units.temperature_2m_max;
             humidityCrt.Text = weather.current.relative_humidity_2m.ToString() + weather.current_units.relative_humidity_2m;
@@ -393,8 +407,7 @@
 
         private void refresh_Refreshing(object sender, EventArgs e)
         {
-            RefreshWeatherData();
-            refresh.IsRefreshing = false;
+            MainWeatherLocation();
         }
     }
 }
