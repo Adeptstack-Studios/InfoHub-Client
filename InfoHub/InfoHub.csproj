@@ -39,13 +39,61 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\feuchtigkeit.png" />
+	  <None Remove="Resources\Images\feuchtigkeitsmesser.png" />
+	  <None Remove="Resources\Images\fog.png" />
+	  <None Remove="Resources\Images\hagel.png" />
+	  <None Remove="Resources\Images\hagel_nacht.png" />
+	  <None Remove="Resources\Images\intensiver_regen.png" />
+	  <None Remove="Resources\Images\leichter_regen.png" />
+	  <None Remove="Resources\Images\leichter_regen2.png" />
+	  <None Remove="Resources\Images\leichter_regen_2.png" />
+	  <None Remove="Resources\Images\leichter_regen_2_nacht.png" />
+	  <None Remove="Resources\Images\leichter_regen_nacht.png" />
+	  <None Remove="Resources\Images\leichter_schneefall.png" />
+	  <None Remove="Resources\Images\leichter_schneefall_nacht.png" />
+	  <None Remove="Resources\Images\leicht_bewoelkt_tag.png" />
+	  <None Remove="Resources\Images\luftdruck.png" />
+	  <None Remove="Resources\Images\mond.png" />
+	  <None Remove="Resources\Images\nebel_nacht.png" />
+	  <None Remove="Resources\Images\nebel_tag.png" />
+	  <None Remove="Resources\Images\platzregen.png" />
+	  <None Remove="Resources\Images\platzregen_nacht.png" />
+	  <None Remove="Resources\Images\regen.png" />
+	  <None Remove="Resources\Images\regen_nacht.png" />
+	  <None Remove="Resources\Images\regnerische_nacht.png" />
+	  <None Remove="Resources\Images\schnee.png" />
+	  <None Remove="Resources\Images\schneeregen.png" />
+	  <None Remove="Resources\Images\schneesturm.png" />
+	  <None Remove="Resources\Images\schnee_nacht.png" />
+	  <None Remove="Resources\Images\sintflutartiger_regen.png" />
+	  <None Remove="Resources\Images\sintflutartiger_regen_nacht.png" />
+	  <None Remove="Resources\Images\snowy_moony_night.png" />
+	  <None Remove="Resources\Images\snowy_sunny_day.png" />
+	  <None Remove="Resources\Images\sonne.png" />
+	  <None Remove="Resources\Images\sonnenaufgang.png" />
+	  <None Remove="Resources\Images\sonnenuntergang.png" />
+	  <None Remove="Resources\Images\starkregen.png" />
+	  <None Remove="Resources\Images\starkregen_nacht.png" />
+	  <None Remove="Resources\Images\stormy_night.png" />
+	  <None Remove="Resources\Images\storm_with_heavy_rain.png" />
+	  <None Remove="Resources\Images\sturm.png" />
+	  <None Remove="Resources\Images\teilweise_bewoelkt_regen.png" />
+	  <None Remove="Resources\Images\thermometer.png" />
+	  <None Remove="Resources\Images\wind.png" />
+	  <None Remove="Resources\Images\windiges_wetter.png" />
+	  <None Remove="Resources\Images\wolken.png" />
+	  <None Remove="Resources\Images\wolkenblitz.png" />
+	  <None Remove="Resources\Images\wolken_night.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,6 +114,18 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="SensorsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WeatherLocationsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WeatherPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WeatherSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

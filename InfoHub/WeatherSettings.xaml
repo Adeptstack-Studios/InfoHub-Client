@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InfoHub.WeatherSettings"
+             Title="WeatherSettings">
+    <VerticalStackLayout>
+        <FlexLayout x:Name="weatherLocationData" >
+            
+        </FlexLayout>
+
+        <VerticalStackLayout >
+            <Entry Placeholder="Locationname" x:Name="location" />
+            <Entry Placeholder="Latitude" x:Name="latitude" />
+            <Entry Placeholder="Longitude" x:Name="longitude" />
+            <HorizontalStackLayout >
+                <CheckBox x:Name="isMain" />
+                <Label Text="Main location" />
+            </HorizontalStackLayout>
+            <Button Text="Save" x:Name="SaveBtn" Clicked="SaveBtn_Clicked" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

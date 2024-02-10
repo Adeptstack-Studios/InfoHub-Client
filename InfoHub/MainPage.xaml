@@ -3,23 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InfoHub.MainPage">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="350" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <RefreshView x:Name="refresh" Refreshing="refresh_Refreshing">
+        <ScrollView >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="400" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Editor x:Name="edit">
-                
-            </Editor>
-        </Grid>
+                <Grid Grid.Row="0">
+                    <VerticalStackLayout Margin="0,20,0,0" >
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Image Source="Resources/Images/fog.png" x:Name="weatherIcon" />
+                            <VerticalStackLayout VerticalOptions="Center" >
+                                <Label x:Name="tempCrt" Text="12°C" FontSize="38" Margin="10,0,0,0" />
+                                <Label x:Name="weatherCodeCrt" Text="Bewölkt" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,0,0" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
 
-        <Grid Grid.Row="1">
-            <VerticalStackLayout>
-                <Button Text="Sensors" x:Name="NavToSensorsBtn" Clicked="NavToSensorsBtn_Clicked" VerticalOptions="Start" WidthRequest="300" HeightRequest="175" />
-            </VerticalStackLayout>
-        </Grid>
-    </Grid>
+                        <FlexLayout JustifyContent="SpaceAround" Wrap="Wrap" Margin="20,30,20,0">
+                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15" >
+                                <Grid>
+                                    <HorizontalStackLayout Margin="5" Opacity="0.6" VerticalOptions="Start">
+                                        <Image Source="Resources/Images/thermometer.png" WidthRequest="15" HeightRequest="15" />
+                                        <Label Text="Temperature" FontSize="11.5" Margin="2.5,0" />
+                                    </HorizontalStackLayout>
+                                    <Label x:Name="tempMinMax" Text="-18.3°C / -12.9°C" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+                                </Grid>
+                            </Border>
+
+                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15" >
+                                <Grid>
+                                    <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                        <Image Source="Resources/Images/feuchtigkeitsmesser.png" WidthRequest="15" HeightRequest="15" />
+                                        <Label Text="Humidity" FontSize="11.5" Margin="5,0" />
+                                    </HorizontalStackLayout>
+                                    <Label x:Name="humidityCrt" Text="75%" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" >
+                                <Grid>
+                                    <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                        <Image Source="Resources/Images/luftdruck.png" WidthRequest="15" HeightRequest="15" />
+                                        <Label Text="Surface pressure" FontSize="11.5" Margin="5,0" />
+                                    </HorizontalStackLayout>
+                                    <Label x:Name="pressureSurfaceCrt" Text="9999hPa" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" >
+                                <Grid>
+                                    <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                        <Image Source="Resources/Images/wind.png" WidthRequest="15" HeightRequest="15" />
+                                        <Label Text="Wind speed" FontSize="11.5" Margin="5,0" />
+                                    </HorizontalStackLayout>
+                                    <Label x:Name="windSpeedMax" Text="999km/h" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    <Button x:Name="weatherBtn" Clicked="weatherBtn_Clicked" BackgroundColor="Transparent" />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <VerticalStackLayout>
+                        <Button Text="Sensors" x:Name="NavToSensorsBtn" Clicked="NavToSensorsBtn_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
+                    </VerticalStackLayout>
+                    <FlexLayout JustifyContent="SpaceEvenly" HeightRequest="60" VerticalOptions="End">
+                        <Button Text="W" x:Name="Website" Clicked="Website_Clicked" />
+                        <Button Text="G" x:Name="GitHub" Clicked="GitHub_Clicked" />
+                        <Button Text="S" x:Name="Settings" Clicked="Settings_Clicked" />
+                    </FlexLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 
 </ContentPage>

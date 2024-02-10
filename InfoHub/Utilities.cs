@@ -3,6 +3,7 @@
     public class Utilities
     {
         public static List<Sensors> sensors = new List<Sensors>();
+        public static Settings settings = new Settings();
 
         public static void Timer()
         {
