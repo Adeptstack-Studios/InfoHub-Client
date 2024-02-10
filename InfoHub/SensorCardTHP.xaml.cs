@@ -7,6 +7,7 @@ public partial class SensorCardTHP : ContentView
     public static readonly BindableProperty HumidityProperty = BindableProperty.Create(nameof(Humidity), typeof(string), typeof(SensorCardTHP), string.Empty);
     public static readonly BindableProperty PressureProperty = BindableProperty.Create(nameof(Pressure), typeof(string), typeof(SensorCardTHP), string.Empty);
     public static readonly BindableProperty AltitudeProperty = BindableProperty.Create(nameof(Altitude), typeof(string), typeof(SensorCardTHP), string.Empty);
+    public event ClickedEventArgs Clicked;
 
     public string Name
     {
@@ -37,5 +38,28 @@ public partial class SensorCardTHP : ContentView
     public SensorCardTHP()
     {
         InitializeComponent();
+    }
+
+    private void optionsBtn_Clicked(object sender, EventArgs e)
+    {
+        int id = 0;
+        int index = 0;
+        for (int i = 0; i < Utilities.sensors.Count; i++)
+        {
+            if (Utilities.sensors[i].Name == Name)
+            {
+                id = Utilities.sensors[i].ID;
+                index = i;
+                break;
+            }
+        }
+
+        InContentViewClickedEventArgs args = new InContentViewClickedEventArgs()
+        {
+            Index = index,
+            ID = id,
+            Name = Name,
+        };
+        Clicked?.Invoke(this, args);
     }
 }

@@ -48,6 +48,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\FAbrands.otf" />
+	  <None Remove="Resources\Fonts\FAregular.otf" />
+	  <None Remove="Resources\Fonts\FAsolid900.otf" />
 	  <None Remove="Resources\Images\feuchtigkeit.png" />
 	  <None Remove="Resources\Images\feuchtigkeitsmesser.png" />
 	  <None Remove="Resources\Images\fog.png" />

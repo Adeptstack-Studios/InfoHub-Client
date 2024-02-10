@@ -18,6 +18,7 @@
 
             <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}">
                 <Label Text="{Binding Name, FallbackValue='Name'}" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Button Text="&#xf142;" FontFamily="FAsolid" HorizontalOptions="End" WidthRequest="55" Clicked="optionsBtn_Clicked" ToolTipProperties.Text="Manage" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" Margin="0,0" />
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0">

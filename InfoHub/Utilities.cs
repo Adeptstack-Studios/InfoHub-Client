@@ -19,13 +19,20 @@
 
         private static void ThreadGetSensorData()
         {
-            foreach (var item in Utilities.sensors)
+            try
             {
-                if (item.SensorType == SensorType.TemperatureAndPressure)
+                foreach (var item in Utilities.sensors)
                 {
-                    SensorDataTHP sensorData = Web.GetSensorDataTHP(item.IpAddress, item.Port);
-                    item.SensorData = sensorData;
+                    if (item.SensorType == SensorType.TemperatureAndPressure)
+                    {
+                        SensorDataTHP sensorData = Web.GetSensorDataTHP(item.IpAddress, item.Port);
+                        item.SensorData = sensorData;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
             }
         }
     }

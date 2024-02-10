@@ -20,7 +20,10 @@
                 <Border StrokeThickness="2" StrokeShape="RoundRectangle 28" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="400" WidthRequest="300" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" >
                     <Grid >
                         <VerticalStackLayout >
-                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Add new Sensor" Margin="0,15" FontSize="18" />
+                            <Grid >
+                                <Label x:Name="dialogTitle" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Add new Sensor" Margin="0,15" FontSize="18" />
+                                <Button HorizontalOptions="End" WidthRequest="50" FontSize="16" BackgroundColor="Transparent" Text="xmark" FontFamily="FAsolid" x:Name="CancelSensorBtn" Clicked="CancelSensorBtn_Clicked" HeightRequest="50" CornerRadius="15" />
+                            </Grid>
 
                             <Entry Placeholder="Name" x:Name="nameEntry" Margin="10" />
                             <Entry Placeholder="IP address" x:Name="ipEntry" Margin="10" />
@@ -32,12 +35,21 @@
                             </Picker>
                         </VerticalStackLayout>
                         <FlexLayout JustifyContent="SpaceAround" VerticalOptions="End" Margin="15" >
-                            <Button Text="Cancel" x:Name="CancelSensorBtn" Clicked="CancelSensorBtn_Clicked" HeightRequest="50"  CornerRadius="15" />
+                            <Button Text="Delete" x:Name="DeleteSensorBtn" Clicked="DeleteSensorBtn_Clicked" BackgroundColor="OrangeRed" HeightRequest="50"  CornerRadius="15" />
                             <Button Text="Save" x:Name="SaveSensorBtn" Clicked="SaveSensorBtn_Clicked" HeightRequest="50" CornerRadius="15" />
                         </FlexLayout>
                     </Grid>
                 </Border>
             </ScrollView>
+        </Grid>
+
+        <Grid BackgroundColor="#bb000000" x:Name="message" IsVisible="False">
+            <Border StrokeThickness="2" StrokeShape="RoundRectangle 28" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="150" WidthRequest="300" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" >
+                <Grid>
+                    <Label x:Name="lblMessage" Margin="40,30" />
+                    <Button Text="OK" x:Name="OKBtn" Clicked="OKBtn_Clicked" HeightRequest="40" WidthRequest="50" Margin="25,15" VerticalOptions="End" HorizontalOptions="End" />
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </ContentPage>

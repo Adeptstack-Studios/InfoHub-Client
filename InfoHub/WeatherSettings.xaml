@@ -15,7 +15,10 @@
         </ScrollView>
 
         <VerticalStackLayout Margin=" 20" Grid.Row="1" >
-            <Label Text="Add location:" FontSize="Title" FontAttributes="Bold" />
+            <FlexLayout JustifyContent="SpaceAround">
+                <Label Text="Manage locations:" x:Name="title" FontSize="Title" FontAttributes="Bold" VerticalOptions="Center" />
+                <Button Text="Cancel edit" x:Name="cancelEditBtn" Clicked="cancelEditBtn_Clicked" IsVisible="False" />
+            </FlexLayout>
             <Entry Placeholder="Locationname" x:Name="location" />
             <Entry Placeholder="Latitude" x:Name="latitude" />
             <Entry Placeholder="Longitude" x:Name="longitude" />
@@ -23,7 +26,19 @@
                 <CheckBox x:Name="isMain" />
                 <Label Text="Main location" VerticalOptions="Center" />
             </HorizontalStackLayout>
-            <Button Text="Save" x:Name="SaveBtn" Clicked="SaveBtn_Clicked" />
+            <FlexLayout JustifyContent="SpaceEvenly">
+                <Button Text="Delete" x:Name="DeleteBtn" Clicked="DeleteBtn_Clicked" BackgroundColor="OrangeRed" />
+                <Button Text="Save" x:Name="SaveBtn" Clicked="SaveBtn_Clicked" />
+            </FlexLayout>
         </VerticalStackLayout>
+
+        <Grid BackgroundColor="#bb000000" x:Name="message" IsVisible="False">
+            <Border StrokeThickness="2" StrokeShape="RoundRectangle 28" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="150" WidthRequest="300" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" >
+                <Grid>
+                    <Label x:Name="lblMessage" Margin="40,30" />
+                    <Button Text="OK" x:Name="OKBtn" Clicked="OKBtn_Clicked" HeightRequest="40" WidthRequest="50" Margin="25,15" VerticalOptions="End" HorizontalOptions="End" />
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </ContentPage>

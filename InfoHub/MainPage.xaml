@@ -72,9 +72,9 @@
                         <Button Text="Sensors" x:Name="NavToSensorsBtn" Clicked="NavToSensorsBtn_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
                     </VerticalStackLayout>
                     <FlexLayout JustifyContent="SpaceEvenly" HeightRequest="60" VerticalOptions="End">
-                        <Button Text="W" x:Name="Website" Clicked="Website_Clicked" />
-                        <Button Text="G" x:Name="GitHub" Clicked="GitHub_Clicked" />
-                        <Button Text="S" x:Name="Settings" Clicked="Settings_Clicked" />
+                        <Button FontSize="24" Text="globe" FontFamily="FAsolid" x:Name="Website" Clicked="Website_Clicked" />
+                        <Button FontSize="24" Text="github" FontFamily="FAbrands" x:Name="GitHub" Clicked="GitHub_Clicked" />
+                        <Button FontSize="24" Text="gear" FontFamily="FAsolid" x:Name="Settings" Clicked="Settings_Clicked" />
                     </FlexLayout>
                 </Grid>
             </Grid>
