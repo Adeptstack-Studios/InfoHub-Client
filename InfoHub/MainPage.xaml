@@ -10,7 +10,9 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            
+            <Editor x:Name="edit">
+                
+            </Editor>
         </Grid>
 
         <Grid Grid.Row="1">

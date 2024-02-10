@@ -2,20 +2,14 @@ namespace InfoHub;
 
 public partial class SensorsPage : ContentPage
 {
-    List<Sensors> sensors = new List<Sensors>();
-
     public SensorsPage()
     {
         InitializeComponent();
-        sensors = Data.LoadSensors();
     }
 
     private void refresh_Refreshing(object sender, EventArgs e)
     {
-        if (ShowSensorsData())
-        {
-            refresh.IsRefreshing = false;
-        }
+        ShowSensorsData();
     }
 
     private void AddButton_Clicked(object sender, EventArgs e)
@@ -34,12 +28,12 @@ public partial class SensorsPage : ContentPage
         AddDialog.IsEnabled = false;
 
         int id = 0;
-        if (sensors.Count > 0)
+        if (Utilities.sensors.Count > 0)
         {
-            id = sensors[sensors.Count - 1].ID + 1;
+            id = Utilities.sensors[Utilities.sensors.Count - 1].ID + 1;
         }
 
-        sensors.Add(new Sensors
+        Utilities.sensors.Add(new Sensors
         {
             ID = id,
             Name = nameEntry.Text,
@@ -48,7 +42,7 @@ public partial class SensorsPage : ContentPage
             SensorType = (SensorType)typePicker.SelectedIndex
         });
 
-        Data.SaveSensors(sensors);
+        Data.SaveSensors(Utilities.sensors);
         ShowSensorsData();
     }
 
@@ -63,13 +57,10 @@ public partial class SensorsPage : ContentPage
     bool ShowSensorsData()
     {
         flexl.Children.Clear();
-        foreach (var item in sensors)
+        foreach (var item in Utilities.sensors)
         {
             if (item.SensorType == SensorType.TemperatureAndPressure)
             {
-                SensorDataTHP sensorData = Web.GetSensorDataTHP(item.IpAddress, item.Port);
-                item.SensorData = sensorData;
-
                 SensorCardTHP sensorCard = new SensorCardTHP
                 {
                     Name = item.Name,
@@ -78,10 +69,11 @@ public partial class SensorsPage : ContentPage
                     Pressure = item.SensorData.pressure.ToString() + "hPa",
                     Altitude = item.SensorData.altitude.ToString() + "m",
                 };
-
                 flexl.Children.Add(sensorCard);
             }
         }
+        Data.SaveSensors(Utilities.sensors);
+        refresh.IsRefreshing = false;
         return true;
     }
 

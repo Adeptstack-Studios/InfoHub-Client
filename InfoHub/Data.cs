@@ -41,6 +41,7 @@ namespace InfoHub
                 string filePath = Path.Combine(fullPath, "sensors.json");
 
                 string json = File.ReadAllText(filePath);
+                Console.WriteLine(json);
                 return JsonSerializer.Deserialize<List<Sensors>>(json) ?? new();
             }
             catch (Exception e)

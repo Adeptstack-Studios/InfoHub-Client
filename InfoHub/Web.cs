@@ -5,7 +5,7 @@ namespace InfoHub
 {
     class Web
     {
-        static HttpClient client = new HttpClient(new Xamarin.Android.Net.AndroidMessageHandler());
+        static HttpClient client = new HttpClient();
 
         public static SensorDataTHP GetSensorDataTHP(string ip, string port)
         {

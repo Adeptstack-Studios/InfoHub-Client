@@ -2,10 +2,10 @@
 {
     public class SensorDataTHP
     {
-        public float temperature { get; set; }
-        public float humidity { get; set; }
-        public float pressure { get; set; }
-        public float altitude { get; set; }
+        public float temperature { get; set; } = 0;
+        public float humidity { get; set; } = 0;
+        public float pressure { get; set; } = 0;
+        public float altitude { get; set; } = 0;
 
     }
 }
