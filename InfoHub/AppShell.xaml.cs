@@ -5,6 +5,7 @@
         public AppShell()
         {
             InitializeComponent();
+            Application.Current.UserAppTheme = AppTheme.Dark;
         }
     }
 }
