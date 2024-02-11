@@ -41,7 +41,7 @@
             var weatherTitle = GetWeatherCodeText(weather.current.weather_code, weather.current.is_day);
             weatherCodeCrt.Text = weatherTitle.text;
             weatherIcon.Source = weatherTitle.imgPath;
-            windSpeedMax.Text = weather.daily.wind_speed_10m_max[0].ToString() + weather.daily_units.wind_speed_10m_max;
+            windSpeedMax.Text = weather.current.wind_speed_10m.ToString() + weather.current_units.wind_speed_10m;
             pressureSurfaceCrt.Text = weather.current.surface_pressure.ToString() + weather.current_units.surface_pressure;
         }
 

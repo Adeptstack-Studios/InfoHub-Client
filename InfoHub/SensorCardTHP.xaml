@@ -17,36 +17,41 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}">
-                <Label Text="{Binding Name, FallbackValue='Name'}" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Image Source="Resources/Images/thermometer.png" HorizontalOptions="Start" WidthRequest="25" Margin="10,0" />
+                <Label Text="{Binding Name, FallbackValue='Name'}" FontFamily="OpenSansSemibold" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 <Button Text="&#xf142;" FontFamily="FAsolid" HorizontalOptions="End" WidthRequest="55" Clicked="optionsBtn_Clicked" ToolTipProperties.Text="Manage" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" Margin="0,0" />
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0">
-                <VerticalStackLayout >
-                    <Label Text="Temperature" Margin="10" FontSize="16" />
-                    <Label Text="{Binding Temperature, FallbackValue='Temperature'}" Margin="11,0" />
-                </VerticalStackLayout>
+                <HorizontalStackLayout Margin="15,10" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/thermometer.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Temperature" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding Temperature, FallbackValue='Temperature'}" Margin="11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
-                <VerticalStackLayout >
-                    <Label Text="Humidity" Margin="10" FontSize="16" />
-                    <Label Text="{Binding Humidity, FallbackValue='Humidity'}" Margin="11,0"  />
-                </VerticalStackLayout>
+                <HorizontalStackLayout Margin="15,10" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/feuchtigkeitsmesser.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Humidity" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding Humidity, FallbackValue='Humidity'}" Margin="11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0">
-                <VerticalStackLayout >
-                    <Label Text="Pressure" Margin="10" FontSize="16" />
-                    <Label Text="{Binding Pressure, FallbackValue='Pressure'}" Margin="11,0"  />
-                </VerticalStackLayout>
+                <HorizontalStackLayout Margin="15,0" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/luftdruck.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Pressure" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding Pressure, FallbackValue='Pressure'}" Margin="11,-10,11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1">
-                <VerticalStackLayout >
-                    <Label Text="Altitude" Margin="10" FontSize="16" />
-                    <Label Text="{Binding Altitude, FallbackValue='Altitude'}" Margin="11,0"  />
-                </VerticalStackLayout>
+                <HorizontalStackLayout Margin="15,0" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/hoehe.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Altitude" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding Altitude, FallbackValue='Altitude'}" Margin="11,-10,11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
             </Grid>
 
         </Grid>
     </Border>
-    
+
 </ContentView>
