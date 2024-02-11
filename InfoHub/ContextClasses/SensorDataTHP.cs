@@ -1,4 +1,4 @@
-﻿namespace InfoHub
+﻿namespace InfoHub.ContextClasses
 {
     public class SensorDataTHP
     {

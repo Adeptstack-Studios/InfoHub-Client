@@ -1,10 +1,5 @@
-﻿namespace InfoHub
+﻿namespace InfoHub.ContextClasses
 {
-    public class Settings
-    {
-        public List<WeatherLocations> WeatherSettings { get; set; } = new List<WeatherLocations>();
-    }
-
     public class WeatherLocations
     {
         public int ID { get; set; }

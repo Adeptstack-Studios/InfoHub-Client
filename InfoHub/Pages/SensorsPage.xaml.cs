@@ -1,4 +1,10 @@
-namespace InfoHub;
+using InfoHub.ContentViews;
+using InfoHub.ContextClasses;
+using InfoHub.CustomEventArgs;
+using InfoHub.Enums;
+using InfoHub.Utilities;
+
+namespace InfoHub.Pages;
 
 public partial class SensorsPage : ContentPage
 {
@@ -34,12 +40,12 @@ public partial class SensorsPage : ContentPage
         if (CheckSensorMatches() == 0 && !isEdit)
         {
             int id = 0;
-            if (Utilities.sensors.Count > 0)
+            if (Utilities.AppResources.sensors.Count > 0)
             {
-                id = Utilities.sensors[Utilities.sensors.Count - 1].ID + 1;
+                id = Utilities.AppResources.sensors[Utilities.AppResources.sensors.Count - 1].ID + 1;
             }
 
-            Utilities.sensors.Add(new Sensors
+            Utilities.AppResources.sensors.Add(new Sensors
             {
                 ID = id,
                 Name = nameEntry.Text,
@@ -50,10 +56,10 @@ public partial class SensorsPage : ContentPage
         }
         else if (isEdit && CheckSensorMatches() == 0)
         {
-            Utilities.sensors[index].Name = nameEntry.Text;
-            Utilities.sensors[index].IpAddress = ipEntry.Text;
-            Utilities.sensors[index].Port = portEntry.Text;
-            Utilities.sensors[index].SensorType = (SensorType)typePicker.SelectedIndex;
+            Utilities.AppResources.sensors[index].Name = nameEntry.Text;
+            Utilities.AppResources.sensors[index].IpAddress = ipEntry.Text;
+            Utilities.AppResources.sensors[index].Port = portEntry.Text;
+            Utilities.AppResources.sensors[index].SensorType = (SensorType)typePicker.SelectedIndex;
         }
         else if (CheckSensorMatches() == 1)
         {
@@ -66,7 +72,7 @@ public partial class SensorsPage : ContentPage
         ipEntry.Text = "";
         portEntry.Text = "";
         typePicker.SelectedIndex = -1;
-        Data.SaveSensors(Utilities.sensors);
+        Data.SaveSensors(Utilities.AppResources.sensors);
         ShowSensorsData();
     }
 
@@ -82,7 +88,7 @@ public partial class SensorsPage : ContentPage
     bool ShowSensorsData()
     {
         flexl.Children.Clear();
-        foreach (var item in Utilities.sensors)
+        foreach (var item in Utilities.AppResources.sensors)
         {
             if (item.SensorType == SensorType.TemperatureAndPressure)
             {
@@ -99,7 +105,7 @@ public partial class SensorsPage : ContentPage
                 flexl.Children.Add(sensorCard);
             }
         }
-        Data.SaveSensors(Utilities.sensors);
+        Data.SaveSensors(Utilities.AppResources.sensors);
         refresh.IsRefreshing = false;
         return true;
     }
@@ -113,7 +119,7 @@ public partial class SensorsPage : ContentPage
         AddDialog.IsVisible = true;
         AddDialog.IsEnabled = true;
 
-        var values = Utilities.sensors[e.Index];
+        var values = Utilities.AppResources.sensors[e.Index];
         dialogTitle.Text = $"Edit {values.Name}";
 
         nameEntry.Text = values.Name;
@@ -133,7 +139,7 @@ public partial class SensorsPage : ContentPage
 
         if (index >= 0)
         {
-            Utilities.sensors.RemoveAt(index);
+            Utilities.AppResources.sensors.RemoveAt(index);
 
             nameEntry.Text = "";
             ipEntry.Text = "";
@@ -144,7 +150,7 @@ public partial class SensorsPage : ContentPage
             AddDialog.IsVisible = false;
             AddDialog.IsEnabled = false;
             isEdit = false;
-            Data.SaveSensors(Utilities.sensors);
+            Data.SaveSensors(Utilities.AppResources.sensors);
             ShowSensorsData();
         }
     }
@@ -152,9 +158,9 @@ public partial class SensorsPage : ContentPage
     int GetIndexOfSameSensor()
     {
         int index = 0;
-        for (int i = 0; i < Utilities.sensors.Count; i++)
+        for (int i = 0; i < Utilities.AppResources.sensors.Count; i++)
         {
-            if (nameEntry.Text == Utilities.sensors[i].Name && ipEntry.Text == Utilities.sensors[i].IpAddress && portEntry.Text == Utilities.sensors[i].Port && typePicker.SelectedIndex == (int)Utilities.sensors[i].SensorType)
+            if (nameEntry.Text == Utilities.AppResources.sensors[i].Name && ipEntry.Text == Utilities.AppResources.sensors[i].IpAddress && portEntry.Text == Utilities.AppResources.sensors[i].Port && typePicker.SelectedIndex == (int)Utilities.AppResources.sensors[i].SensorType)
             {
                 index = i;
                 return index;
@@ -165,7 +171,7 @@ public partial class SensorsPage : ContentPage
 
     int CheckSensorMatches()
     {
-        foreach (var item in Utilities.sensors)
+        foreach (var item in Utilities.AppResources.sensors)
         {
             if (nameEntry.Text == item.Name && ipEntry.Text == item.IpAddress && portEntry.Text == item.Port && typePicker.SelectedIndex == (int)item.SensorType)
             {

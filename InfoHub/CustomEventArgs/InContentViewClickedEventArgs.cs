@@ -1,4 +1,4 @@
-﻿namespace InfoHub
+﻿namespace InfoHub.CustomEventArgs
 {
     public class InContentViewClickedEventArgs : EventArgs
     {

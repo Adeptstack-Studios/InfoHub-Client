@@ -1,4 +1,6 @@
-namespace InfoHub;
+using InfoHub.CustomEventArgs;
+
+namespace InfoHub.ContentViews;
 
 public partial class SensorCardTHP : ContentView
 {
@@ -44,11 +46,11 @@ public partial class SensorCardTHP : ContentView
     {
         int id = 0;
         int index = 0;
-        for (int i = 0; i < Utilities.sensors.Count; i++)
+        for (int i = 0; i < Utilities.AppResources.sensors.Count; i++)
         {
-            if (Utilities.sensors[i].Name == Name)
+            if (Utilities.AppResources.sensors[i].Name == Name)
             {
-                id = Utilities.sensors[i].ID;
+                id = Utilities.AppResources.sensors[i].ID;
                 index = i;
                 break;
             }

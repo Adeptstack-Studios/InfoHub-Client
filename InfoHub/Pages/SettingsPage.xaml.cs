@@ -1,4 +1,4 @@
-namespace InfoHub;
+namespace InfoHub.Pages;
 
 public partial class SettingsPage : ContentPage
 {

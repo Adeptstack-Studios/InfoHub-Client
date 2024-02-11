@@ -1,4 +1,4 @@
-﻿namespace InfoHub
+﻿namespace InfoHub.Enums
 {
     public enum SensorType
     {

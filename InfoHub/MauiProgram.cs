@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using InfoHub.CustomEventArgs;
+using Microsoft.Extensions.Logging;
 
 namespace InfoHub
 {

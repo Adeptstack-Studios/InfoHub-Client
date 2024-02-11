@@ -1,4 +1,6 @@
-﻿namespace InfoHub
+﻿using InfoHub.Enums;
+
+namespace InfoHub.ContextClasses
 {
     public class Sensors
     {

@@ -51,11 +51,13 @@
 	  <None Remove="Resources\Fonts\FAbrands.otf" />
 	  <None Remove="Resources\Fonts\FAregular.otf" />
 	  <None Remove="Resources\Fonts\FAsolid900.otf" />
+	  <None Remove="Resources\Images\co2_messer.png" />
 	  <None Remove="Resources\Images\feuchtigkeit.png" />
 	  <None Remove="Resources\Images\feuchtigkeitsmesser.png" />
 	  <None Remove="Resources\Images\fog.png" />
 	  <None Remove="Resources\Images\hagel.png" />
 	  <None Remove="Resources\Images\hagel_nacht.png" />
+	  <None Remove="Resources\Images\hoehe.png" />
 	  <None Remove="Resources\Images\intensiver_regen.png" />
 	  <None Remove="Resources\Images\leichter_regen.png" />
 	  <None Remove="Resources\Images\leichter_regen2.png" />
@@ -104,31 +106,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="SensorCardTHP.xaml.cs">
+	  <Compile Update="ContentViews\SensorCardTHP.xaml.cs">
 	    <DependentUpon>SensorCardTHP.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="SensorsPage.xaml.cs">
+	  <Compile Update="Pages\SensorsPage.xaml.cs">
 	    <DependentUpon>SensorsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="SensorCardTHP.xaml">
+	  <MauiXaml Update="ContentViews\SensorCardTHP.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SensorsPage.xaml">
+	  <MauiXaml Update="Pages\SensorsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SettingsPage.xaml">
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="WeatherLocationsView.xaml">
+	  <MauiXaml Update="ContentViews\WeatherLocationsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="WeatherPage.xaml">
+	  <MauiXaml Update="Pages\WeatherPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="WeatherSettings.xaml">
+	  <MauiXaml Update="Pages\WeatherSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

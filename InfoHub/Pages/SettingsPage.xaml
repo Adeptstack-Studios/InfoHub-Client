@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InfoHub.SettingsPage"
+             x:Class="InfoHub.Pages.SettingsPage"
              Title="Settings">
     <VerticalStackLayout>
         <Button Margin="20" HeightRequest="80" CornerRadius="15" BorderWidth="2" BorderColor="Gray" x:Name="WeatherSettings" Text="Weather settings" Clicked="WeatherSettings_Clicked" />

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:InfoHub"
-             x:Class="InfoHub.SensorsPage"
+             x:Class="InfoHub.Pages.SensorsPage"
              Title="Sensors">
     <Grid >
         <RefreshView x:Name="refresh" Refreshing="refresh_Refreshing" Margin="0,0,0,55">

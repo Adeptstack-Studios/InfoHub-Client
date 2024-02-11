@@ -1,7 +1,8 @@
-﻿using System.Net.Http.Headers;
+﻿using InfoHub.ContextClasses;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace InfoHub
+namespace InfoHub.Utilities
 {
     class Web
     {
@@ -24,6 +25,7 @@ namespace InfoHub
             }
             catch (Exception e)
             {
+                System.Diagnostics.Debug.WriteLine(e.Message);
                 sensorData = new SensorDataTHP();
                 sensorData.temperature = 10;
             }
@@ -47,6 +49,7 @@ namespace InfoHub
             }
             catch (Exception e)
             {
+                System.Diagnostics.Debug.WriteLine(e.Message);
                 weather = new();
             }
             return weather;

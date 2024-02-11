@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InfoHub.SensorCardTHP"
+             x:Class="InfoHub.ContentViews.SensorCardTHP"
              x:Name="this">
 
     <Border WidthRequest="350" HeightRequest="250" StrokeShape="RoundRectangle 28" BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" Margin="0,40,0,0" >

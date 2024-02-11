@@ -1,6 +1,9 @@
-﻿namespace InfoHub
+﻿using InfoHub.ContextClasses;
+using InfoHub.Enums;
+
+namespace InfoHub.Utilities
 {
-    public class Utilities
+    public class AppResources
     {
         public static List<Sensors> sensors = new List<Sensors>();
         public static Settings settings = new Settings();
@@ -21,7 +24,7 @@
         {
             try
             {
-                foreach (var item in Utilities.sensors)
+                foreach (var item in sensors)
                 {
                     if (item.SensorType == SensorType.TemperatureAndPressure)
                     {

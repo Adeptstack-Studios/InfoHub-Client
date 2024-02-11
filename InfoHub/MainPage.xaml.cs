@@ -1,4 +1,9 @@
-﻿namespace InfoHub
+﻿using InfoHub.ContextClasses;
+using InfoHub.Enums;
+using InfoHub.Pages;
+using InfoHub.Utilities;
+
+namespace InfoHub
 {
     public partial class MainPage : ContentPage
     {
@@ -7,9 +12,9 @@
         {
             InitializeComponent();
             Data.Create();
-            Utilities.sensors = Data.LoadSensors();
-            Utilities.settings = Data.LoadSettings();
-            Utilities.Timer();
+            Utilities.AppResources.sensors = Data.LoadSensors();
+            Utilities.AppResources.settings = Data.LoadSettings();
+            Utilities.AppResources.Timer();
 
             MainWeatherLocation();
 
@@ -19,12 +24,12 @@
 
         void MainWeatherLocation()
         {
-            for (int i = 0; i < Utilities.settings.WeatherSettings.Count; i++)
+            for (int i = 0; i < Utilities.AppResources.settings.WeatherSettings.Count; i++)
             {
-                if (Utilities.settings.WeatherSettings[i].Main == true)
+                if (Utilities.AppResources.settings.WeatherSettings[i].Main == true)
                 {
-                    RefreshWeatherData(Utilities.settings.WeatherSettings[i].Latitude, Utilities.settings.WeatherSettings[i].Longitude);
-                    this.Title = Utilities.settings.WeatherSettings[i].Name;
+                    RefreshWeatherData(Utilities.AppResources.settings.WeatherSettings[i].Latitude, Utilities.AppResources.settings.WeatherSettings[i].Longitude);
+                    this.Title = Utilities.AppResources.settings.WeatherSettings[i].Name;
                     refresh.IsRefreshing = false;
                     return;
                 }
@@ -370,7 +375,7 @@
 
         void ThreadGetSensorData()
         {
-            foreach (var item in Utilities.sensors)
+            foreach (var item in Utilities.AppResources.sensors)
             {
                 if (item.SensorType == SensorType.TemperatureAndPressure)
                 {

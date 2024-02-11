@@ -1,4 +1,6 @@
-namespace InfoHub;
+using InfoHub.CustomEventArgs;
+
+namespace InfoHub.ContentViews;
 
 public partial class WeatherLocationsView : ContentView
 {
@@ -39,11 +41,11 @@ public partial class WeatherLocationsView : ContentView
     {
         int id = 0;
         int index = 0;
-        for (int i = 0; i < Utilities.settings.WeatherSettings.Count; i++)
+        for (int i = 0; i < Utilities.AppResources.settings.WeatherSettings.Count; i++)
         {
-            if (Utilities.settings.WeatherSettings[i].Name == Name)
+            if (Utilities.AppResources.settings.WeatherSettings[i].Name == Name)
             {
-                id = Utilities.settings.WeatherSettings[i].ID;
+                id = Utilities.AppResources.settings.WeatherSettings[i].ID;
                 index = i;
                 break;
             }

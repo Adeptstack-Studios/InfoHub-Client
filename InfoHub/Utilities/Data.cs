@@ -1,6 +1,7 @@
-﻿using System.Text.Json;
+﻿using InfoHub.ContextClasses;
+using System.Text.Json;
 
-namespace InfoHub
+namespace InfoHub.Utilities
 {
     public class Data
     {

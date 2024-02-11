@@ -1,4 +1,9 @@
-namespace InfoHub;
+using InfoHub.ContentViews;
+using InfoHub.ContextClasses;
+using InfoHub.CustomEventArgs;
+using InfoHub.Utilities;
+
+namespace InfoHub.Pages;
 
 public partial class WeatherSettings : ContentPage
 {
@@ -12,7 +17,7 @@ public partial class WeatherSettings : ContentPage
 
     bool CheckLocationExists()
     {
-        foreach (var item in Utilities.settings.WeatherSettings)
+        foreach (var item in Utilities.AppResources.settings.WeatherSettings)
         {
             if (location.Text == item.Name || (latitude.Text == item.Latitude && longitude.Text == item.Longitude))
             {
@@ -25,9 +30,9 @@ public partial class WeatherSettings : ContentPage
     int GetIndexOfSameLocation()
     {
         int index = 0;
-        for (int i = 0; i < Utilities.settings.WeatherSettings.Count; i++)
+        for (int i = 0; i < Utilities.AppResources.settings.WeatherSettings.Count; i++)
         {
-            if (location.Text == Utilities.settings.WeatherSettings[i].Name && (latitude.Text == Utilities.settings.WeatherSettings[i].Latitude && longitude.Text == Utilities.settings.WeatherSettings[i].Longitude))
+            if (location.Text == Utilities.AppResources.settings.WeatherSettings[i].Name && (latitude.Text == Utilities.AppResources.settings.WeatherSettings[i].Latitude && longitude.Text == Utilities.AppResources.settings.WeatherSettings[i].Longitude))
             {
                 index = i;
                 return index;
@@ -43,12 +48,12 @@ public partial class WeatherSettings : ContentPage
         if (!isExisting)
         {
             int id = 0;
-            if (Utilities.settings.WeatherSettings.Count > 0)
+            if (Utilities.AppResources.settings.WeatherSettings.Count > 0)
             {
-                id = Utilities.settings.WeatherSettings[Utilities.settings.WeatherSettings.Count - 1].ID + 1;
+                id = Utilities.AppResources.settings.WeatherSettings[Utilities.AppResources.settings.WeatherSettings.Count - 1].ID + 1;
             }
 
-            Utilities.settings.WeatherSettings.Add(new WeatherLocations
+            Utilities.AppResources.settings.WeatherSettings.Add(new WeatherLocations
             {
                 ID = id,
                 Name = location.Text,
@@ -59,10 +64,10 @@ public partial class WeatherSettings : ContentPage
         }
         else if (isEdit)
         {
-            Utilities.settings.WeatherSettings[index].Name = location.Text;
-            Utilities.settings.WeatherSettings[index].Longitude = longitude.Text;
-            Utilities.settings.WeatherSettings[index].Latitude = latitude.Text;
-            Utilities.settings.WeatherSettings[index].Main = isMain.IsChecked;
+            Utilities.AppResources.settings.WeatherSettings[index].Name = location.Text;
+            Utilities.AppResources.settings.WeatherSettings[index].Longitude = longitude.Text;
+            Utilities.AppResources.settings.WeatherSettings[index].Latitude = latitude.Text;
+            Utilities.AppResources.settings.WeatherSettings[index].Main = isMain.IsChecked;
         }
         else
         {
@@ -75,14 +80,14 @@ public partial class WeatherSettings : ContentPage
         longitude.Text = "";
         latitude.Text = "";
         isMain.IsChecked = false;
-        Data.SaveSettings(Utilities.settings);
+        Data.SaveSettings(Utilities.AppResources.settings);
         ShowLocations();
     }
 
     void ShowLocations()
     {
         weatherLocationData.Children.Clear();
-        foreach (var item in Utilities.settings.WeatherSettings)
+        foreach (var item in Utilities.AppResources.settings.WeatherSettings)
         {
             WeatherLocationsView view = new WeatherLocationsView
             {
@@ -101,7 +106,7 @@ public partial class WeatherSettings : ContentPage
     {
         index = e.Index;
         ManageEdit(true);
-        var values = Utilities.settings.WeatherSettings[e.Index];
+        var values = Utilities.AppResources.settings.WeatherSettings[e.Index];
 
         location.Text = values.Name;
         longitude.Text = values.Longitude;
@@ -115,13 +120,13 @@ public partial class WeatherSettings : ContentPage
 
         if (index >= 0)
         {
-            Utilities.settings.WeatherSettings.RemoveAt(index);
+            Utilities.AppResources.settings.WeatherSettings.RemoveAt(index);
 
             location.Text = "";
             longitude.Text = "";
             latitude.Text = "";
             isMain.IsChecked = false;
-            Data.SaveSettings(Utilities.settings);
+            Data.SaveSettings(Utilities.AppResources.settings);
             ShowLocations();
         }
         ManageEdit(false);
