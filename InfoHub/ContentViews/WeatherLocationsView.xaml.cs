@@ -41,11 +41,11 @@ public partial class WeatherLocationsView : ContentView
     {
         int id = 0;
         int index = 0;
-        for (int i = 0; i < Utilities.AppResources.settings.WeatherSettings.Count; i++)
+        for (int i = 0; i < Utilities.AppResources.settings.WeatherLocations.Count; i++)
         {
-            if (Utilities.AppResources.settings.WeatherSettings[i].Name == Name)
+            if (Utilities.AppResources.settings.WeatherLocations[i].Name == Name)
             {
-                id = Utilities.AppResources.settings.WeatherSettings[i].ID;
+                id = Utilities.AppResources.settings.WeatherLocations[i].ID;
                 index = i;
                 break;
             }

@@ -10,6 +10,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
 
@@ -17,16 +18,16 @@
                 <Label Text="{Binding Name, FallbackValue='Name'}" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Column="1">
                 <Label Text="{Binding Latitude, FallbackValue='Latitude'}" Margin="11,0" VerticalOptions="Center" HorizontalOptions="Center"  />
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="2">
-                <FlexLayout >
-                    <Label Text="{Binding Longitude, FallbackValue='Longitude'}" Margin="11,0" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <CheckBox IsChecked="{Binding Main, FallbackValue=False}" IsEnabled="False" />
-                </FlexLayout>
+            <Grid Grid.Column="2">
+                <Label Text="{Binding Longitude, FallbackValue='Longitude'}" Margin="11,0" VerticalOptions="Center" HorizontalOptions="Center" />
             </Grid>
-            <Grid Grid.Column="3" >
+            <Grid Grid.Column="3">
+                <CheckBox IsChecked="{Binding Main, FallbackValue=False}" IsEnabled="False" />
+            </Grid>
+            <Grid Grid.Column="4" >
                 <Button Text="&#xf142;" FontFamily="FAsolid" Clicked="optionsBtn_Clicked" ToolTipProperties.Text="Manage" BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" Margin="0,0" />
             </Grid>
         </Grid>

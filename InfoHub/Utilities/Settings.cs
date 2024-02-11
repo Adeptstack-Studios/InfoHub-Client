@@ -4,6 +4,7 @@ namespace InfoHub.Utilities
 {
     public class Settings
     {
-        public List<WeatherLocations> WeatherSettings { get; set; } = new List<WeatherLocations>();
+        public List<WeatherLocations> WeatherLocations { get; set; } = new List<WeatherLocations>();
+        public WeatherSettings WeatherSettings { get; set; } = new WeatherSettings();
     }
 }

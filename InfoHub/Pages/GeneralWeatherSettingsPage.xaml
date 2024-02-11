@@ -3,7 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InfoHub.Pages.GeneralWeatherSettingsPage"
              Title="Weather settings">
-    <Grid >
-        
-    </Grid>
+    <VerticalStackLayout Margin="30,20,20,0" >
+        <Label Text="Units" FontFamily="OpenSans" Opacity="0.6" FontSize="15" />
+        <Border HeightRequest="155" StrokeShape="RoundRectangle 10" >
+            <VerticalStackLayout HorizontalOptions="Start" Margin="20,10" >
+                <HorizontalStackLayout Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/thermometer.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Temperature unit" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Picker Title="Temperature unit" x:Name="pickerTemperatureUnit"  HeightRequest="50" WidthRequest="150" HorizontalTextAlignment="Center" SelectedIndexChanged="pickerTemperatureUnit_SelectedIndexChanged" >
+                    <Picker.Items>
+                        <x:String>Celius (°C)</x:String>
+                        <x:String>Fahrenheit(°F)</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <HorizontalStackLayout Opacity="0.6" Margin="0,5,0,0" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/wind.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Speed unit" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Picker x:Name="pickerSpeedUnit" Title="Speed unit" HeightRequest="50" WidthRequest="150" HorizontalTextAlignment="Center" SelectedIndexChanged="pickerSpeedUnit_SelectedIndexChanged" >
+                    <Picker.Items>
+                        <x:String>Km/h</x:String>
+                        <x:String>Mp/h</x:String>
+                    </Picker.Items>
+                </Picker>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
 </ContentPage>

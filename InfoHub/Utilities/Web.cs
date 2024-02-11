@@ -43,7 +43,7 @@ namespace InfoHub.Utilities
                     new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Add("X-Version", "1");
 
-                var stringTask = client.GetStringAsync($"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current=temperature_2m,relative_humidity_2m,is_day,precipitation,rain,showers,snowfall,weather_code,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,wind_speed_10m_max,wind_direction_10m_dominant&timezone=auto&forecast_days=3");
+                var stringTask = client.GetStringAsync($"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,wind_speed_10m_max,wind_direction_10m_dominant&temperature_unit={Utilities.AppResources.settings.WeatherSettings.TemperatureUnit.ToString()}&wind_speed_unit={Utilities.AppResources.settings.WeatherSettings.SpeedUnit.ToString()}&timezone=auto&forecast_days=3");
                 string getJson = stringTask.Result;
                 weather = JsonSerializer.Deserialize<WeatherData>(getJson) ?? new();
             }

@@ -8,7 +8,7 @@
         <ScrollView >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="400" />
+                    <RowDefinition Height="*" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
@@ -22,7 +22,7 @@
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
 
-                        <FlexLayout JustifyContent="SpaceAround" Wrap="Wrap" Margin="20,30,20,0">
+                        <FlexLayout JustifyContent="SpaceAround" Wrap="Wrap" Margin="20,30,20,0" MaximumWidthRequest="800">
                             <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15" >
                                 <Grid>
                                     <HorizontalStackLayout Margin="5" Opacity="0.6" VerticalOptions="Start">
@@ -43,7 +43,7 @@
                                 </Grid>
                             </Border>
 
-                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" >
+                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
                                 <Grid>
                                     <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
                                         <Image Source="Resources/Images/luftdruck.png" WidthRequest="15" HeightRequest="15" />
@@ -53,7 +53,7 @@
                                 </Grid>
                             </Border>
 
-                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" >
+                            <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
                                 <Grid>
                                     <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
                                         <Image Source="Resources/Images/wind.png" WidthRequest="15" HeightRequest="15" />
@@ -68,14 +68,19 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <VerticalStackLayout>
+                    <FlexLayout JustifyContent="SpaceEvenly" Margin="0,0,0,70" MaximumWidthRequest="600" VerticalOptions="Center" Wrap="Wrap" >
                         <Button Text="Sensors" x:Name="NavToSensorsBtn" Clicked="NavToSensorsBtn_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
-                    </VerticalStackLayout>
-                    <FlexLayout JustifyContent="SpaceEvenly" HeightRequest="60" VerticalOptions="End">
-                        <Button FontSize="24" Text="globe" FontFamily="FAsolid" x:Name="Website" Clicked="Website_Clicked" />
-                        <Button FontSize="24" Text="github" FontFamily="FAbrands" x:Name="GitHub" Clicked="GitHub_Clicked" />
-                        <Button FontSize="24" Text="gear" FontFamily="FAsolid" x:Name="Settings" Clicked="Settings_Clicked" />
+                        <Button Text="Lights" x:Name="NavToLights" Clicked="NavToLights_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
                     </FlexLayout>
+                    <Grid HeightRequest="70" VerticalOptions="End" HorizontalOptions="Center" >
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 10" MaximumWidthRequest="400" Margin="0,0,0,10" >
+                            <FlexLayout JustifyContent="SpaceEvenly" MaximumWidthRequest="600">
+                                <Button FontSize="24" Text="globe" FontFamily="FAsolid" x:Name="Website" Clicked="Website_Clicked" />
+                                <Button FontSize="24" Text="github" FontFamily="FAbrands" x:Name="GitHub" Clicked="GitHub_Clicked" />
+                                <Button FontSize="24" Text="gear" FontFamily="FAsolid" x:Name="Settings" Clicked="Settings_Clicked" />
+                            </FlexLayout>
+                        </Border>
+                    </Grid>
                 </Grid>
             </Grid>
         </ScrollView>

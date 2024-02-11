@@ -32,10 +32,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\adeptstack.ico" />
+		<MauiSplashScreen Include="Resources\Splash\adeptstack.png" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -48,9 +48,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\adeptstack.ico" />
 	  <None Remove="Resources\Fonts\FAbrands.otf" />
 	  <None Remove="Resources\Fonts\FAregular.otf" />
 	  <None Remove="Resources\Fonts\FAsolid900.otf" />
+	  <None Remove="Resources\Images\adeptstack.png" />
 	  <None Remove="Resources\Images\co2_messer.png" />
 	  <None Remove="Resources\Images\feuchtigkeit.png" />
 	  <None Remove="Resources\Images\feuchtigkeitsmesser.png" />
@@ -99,6 +101,7 @@
 	  <None Remove="Resources\Images\wolken.png" />
 	  <None Remove="Resources\Images\wolkenblitz.png" />
 	  <None Remove="Resources\Images\wolken_night.png" />
+	  <None Remove="Resources\Splash\adeptstack.png" />
 	</ItemGroup>
 
 	<ItemGroup>

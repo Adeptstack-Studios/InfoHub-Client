@@ -24,12 +24,12 @@ namespace InfoHub
 
         void MainWeatherLocation()
         {
-            for (int i = 0; i < Utilities.AppResources.settings.WeatherSettings.Count; i++)
+            for (int i = 0; i < Utilities.AppResources.settings.WeatherLocations.Count; i++)
             {
-                if (Utilities.AppResources.settings.WeatherSettings[i].Main == true)
+                if (Utilities.AppResources.settings.WeatherLocations[i].Main == true)
                 {
-                    RefreshWeatherData(Utilities.AppResources.settings.WeatherSettings[i].Latitude, Utilities.AppResources.settings.WeatherSettings[i].Longitude);
-                    this.Title = Utilities.AppResources.settings.WeatherSettings[i].Name;
+                    RefreshWeatherData(Utilities.AppResources.settings.WeatherLocations[i].Latitude, Utilities.AppResources.settings.WeatherLocations[i].Longitude);
+                    this.Title = Utilities.AppResources.settings.WeatherLocations[i].Name;
                     refresh.IsRefreshing = false;
                     return;
                 }
@@ -413,6 +413,11 @@ namespace InfoHub
         private void refresh_Refreshing(object sender, EventArgs e)
         {
             MainWeatherLocation();
+        }
+
+        private void NavToLights_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
