@@ -1,7 +1,6 @@
 ﻿namespace InfoHub.ContextClasses
 {
 
-
     public class WeatherData
     {
         public float latitude { get; set; } = 0;
@@ -13,6 +12,8 @@
         public float elevation { get; set; } = 0;
         public Current_Units current_units { get; set; } = new Current_Units();
         public Current current { get; set; } = new Current();
+        public Hourly_Units hourly_units { get; set; } = new Hourly_Units();
+        public Hourly hourly { get; set; } = new Hourly();
         public Daily_Units daily_units { get; set; } = new Daily_Units();
         public Daily daily { get; set; } = new Daily();
     }
@@ -55,6 +56,24 @@
         public int wind_direction_10m { get; set; } = 0;
     }
 
+    public class Hourly_Units
+    {
+        public string time { get; set; } = "";
+        public string temperature_2m { get; set; } = "";
+        public string relative_humidity_2m { get; set; } = "";
+        public string precipitation { get; set; } = "";
+        public string weather_code { get; set; } = "";
+    }
+
+    public class Hourly
+    {
+        public string[] time { get; set; } = new string[72];
+        public float[] temperature_2m { get; set; } = new float[72];
+        public int[] relative_humidity_2m { get; set; } = new int[72];
+        public float[] precipitation { get; set; } = new float[72];
+        public int[] weather_code { get; set; } = new int[72];
+    }
+
     public class Daily_Units
     {
         public string time { get; set; } = "";
@@ -92,6 +111,5 @@
         public float[] wind_speed_10m_max { get; set; } = new float[3];
         public int[] wind_direction_10m_dominant { get; set; } = new int[3];
     }
-
 
 }

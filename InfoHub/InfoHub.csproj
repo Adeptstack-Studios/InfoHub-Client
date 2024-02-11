@@ -73,6 +73,7 @@
 	  <None Remove="Resources\Images\mond.png" />
 	  <None Remove="Resources\Images\nebel_nacht.png" />
 	  <None Remove="Resources\Images\nebel_tag.png" />
+	  <None Remove="Resources\Images\om.png" />
 	  <None Remove="Resources\Images\platzregen.png" />
 	  <None Remove="Resources\Images\platzregen_nacht.png" />
 	  <None Remove="Resources\Images\regen.png" />

@@ -3,7 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InfoHub.Pages.WeatherPage"
              Title="Weather">
-    <VerticalStackLayout>
-        
-    </VerticalStackLayout>
+    <RefreshView x:Name="refresh" Refreshing="refresh_Refreshing">
+        <ScrollView>
+            <VerticalStackLayout>
+                <VerticalStackLayout MaximumWidthRequest="600" >
+                    <Grid>
+                        <HorizontalStackLayout HorizontalOptions="Start" Margin="30,20,30,0">
+                            <Image Source="Resources/Images/fog.png" x:Name="weatherIcon" />
+                            <VerticalStackLayout VerticalOptions="Center" >
+                                <Label x:Name="tempCrt" Text="?°C" FontSize="38" Margin="15,0,0,0" FontFamily="OpenSansSemibold" />
+                                <Label x:Name="weatherCodeCrt" Text="?" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,0,0" FontFamily="OpenSans" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="Start">
+                            <Button WidthRequest="50" HeightRequest="55" FontFamily="FAsolid" Text="chevron-left" x:Name="navLeft" Clicked="navLeft_Clicked" />
+                            <Button WidthRequest="50" HeightRequest="55" FontFamily="FAsolid" Text="chevron-right" x:Name="navRight" Clicked="navRight_Clicked" Margin="5,0,10,0" />
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <VerticalStackLayout Margin="30,30,30,0">
+                        <Label FontFamily="OpenSansSemibold" x:Name="tempFeel" Text="Feels like -?°C" Margin="0,0,0,5" FontSize="16" VerticalOptions="Center" />
+                        <Label FontFamily="OpenSansSemibold" x:Name="tempMinMax" Text="-?°C / -?°C" FontSize="16" VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Margin="30,30,30,0" >
+                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="200" >
+                            <HorizontalStackLayout x:Name="hourlyForecast" >
+
+                            </HorizontalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Margin="30,30,30,0" >
+                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="150" >
+                            <VerticalStackLayout x:Name="dayForecast">
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <FlexLayout JustifyContent="SpaceAround" Wrap="Wrap" Margin="20,30,20,0" MaximumWidthRequest="800">
+                        <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15" >
+                            <Grid>
+                                <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                    <Image Source="Resources/Images/feuchtigkeitsmesser.png" WidthRequest="15" HeightRequest="15" />
+                                    <Label Text="Humidity" FontSize="11.5" Margin="5,0" />
+                                </HorizontalStackLayout>
+                                <Label x:Name="humidityCrt" Text="?%" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
+                            <Grid>
+                                <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                    <Image Source="Resources/Images/wind.png" WidthRequest="15" HeightRequest="15" />
+                                    <Label Text="Wind" FontSize="11.5" Margin="5,0" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label x:Name="windDirection" FontFamily="FAsolid" Text="arrow-up" VerticalTextAlignment="Center" FontSize="24" Margin="0,3.5,10,0" Rotation="154" />
+                                    <Label x:Name="windSpeed" Text="???km/h" FontSize="24"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Border>
+
+                        <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
+                            <Grid>
+                                <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                    <Image Source="Resources/Images/luftdruck.png" WidthRequest="15" HeightRequest="15" />
+                                    <Label Text="Surface pressure" FontSize="11.5" Margin="5,0" />
+                                </HorizontalStackLayout>
+                                <Label x:Name="pressureSurfaceCrt" Text="?hPa" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                        
+                        <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
+                            <Grid>
+                                <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                    <Image Source="Resources/Images/hoehe.png" WidthRequest="15" HeightRequest="15" />
+                                    <Label Text="Altitude" FontSize="11.5" Margin="5,0" />
+                                </HorizontalStackLayout>
+                                <Label x:Name="altitude" Text="?m" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                        
+                        <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15" >
+                            <Grid>
+                                <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start">
+                                    <Image Source="Resources/Images/sonne.png" WidthRequest="15" HeightRequest="15" />
+                                    <Label Text="UV-Index" FontSize="11.5" Margin="2.5,0" />
+                                </HorizontalStackLayout>
+                                <Label x:Name="UVIndex" Text="Niedrig" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+                            </Grid>
+                        </Border>
+                        
+                        <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
+                            <Grid>
+                                <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
+                                    <Image Source="Resources/Images/hoehe.png" WidthRequest="15" HeightRequest="15" />
+                                    <Label Text="Sunny hours" FontSize="11.5" Margin="5,0" />
+                                </HorizontalStackLayout>
+                                <Label x:Name="sunnyHours" Text="?m" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </FlexLayout>
+
+                    <VerticalStackLayout Margin="30,0,30,0" >
+                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="150" >
+                            <Grid >
+                                
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" Margin="40,30,40,15" >
+                        <HorizontalStackLayout >
+                            <Image Source="Resources/Images/om.png" WidthRequest="16" Margin="0,0,4,0" />
+                            <Label FontFamily="OpenSans" Text="open-meteo.com" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label FontFamily="OpenSans" Text="11.02.2024, 20:47" VerticalOptions="Center" x:Name="lastRefresh" />
+                    </FlexLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

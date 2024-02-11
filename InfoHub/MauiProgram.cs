@@ -28,3 +28,5 @@ namespace InfoHub
         }
     }
 }
+//TODO: Multithreading um Infos zu laden --> SensorPage, WeatherLocationPage und WeatherPage
+//TODO: WeatherPage fertigstellen!
