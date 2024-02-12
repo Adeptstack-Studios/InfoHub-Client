@@ -13,6 +13,8 @@ public partial class SensorsPage : ContentPage
     public SensorsPage()
     {
         InitializeComponent();
+        Thread sensorCards = new Thread(new ThreadStart(GenerateSensorCard));
+        sensorCards.Start();
     }
 
     private void refresh_Refreshing(object sender, EventArgs e)
@@ -85,9 +87,15 @@ public partial class SensorsPage : ContentPage
         isEdit = false;
     }
 
-    bool ShowSensorsData()
+    void ShowSensorsData()
     {
-        flexl.Children.Clear();
+        Thread sensorCards = new Thread(new ThreadStart(GenerateSensorCard));
+        sensorCards.Start();
+    }
+
+    void GenerateSensorCard()
+    {
+        Dispatcher.Dispatch(() => flexl.Children.Clear());
         foreach (var item in Utilities.AppResources.sensors)
         {
             if (item.SensorType == SensorType.TemperatureAndPressure)
@@ -102,12 +110,11 @@ public partial class SensorsPage : ContentPage
                 };
                 sensorCard.Clicked += OptionsBtnClicked;
 
-                flexl.Children.Add(sensorCard);
+                Dispatcher.Dispatch(() => flexl.Children.Add(sensorCard));
             }
         }
         Data.SaveSensors(Utilities.AppResources.sensors);
-        refresh.IsRefreshing = false;
-        return true;
+        Dispatcher.Dispatch(() => refresh.IsRefreshing = false);
     }
 
     private void OptionsBtnClicked(object sender, InContentViewClickedEventArgs e)
@@ -130,7 +137,7 @@ public partial class SensorsPage : ContentPage
 
     private void AddButton_Loaded(object sender, EventArgs e)
     {
-        ShowSensorsData();
+        //ShowSensorsData();
     }
 
     private void DeleteSensorBtn_Clicked(object sender, EventArgs e)

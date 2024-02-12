@@ -12,7 +12,8 @@ public partial class WeatherSettings : ContentPage
     public WeatherSettings()
     {
         InitializeComponent();
-        ShowLocations();
+        Thread locationCards = new Thread(new ThreadStart(GenerateLocationCards));
+        locationCards.Start();
     }
 
     bool CheckLocationExists()
@@ -86,7 +87,13 @@ public partial class WeatherSettings : ContentPage
 
     void ShowLocations()
     {
-        weatherLocationData.Children.Clear();
+        Thread threadLocationCard = new Thread(new ThreadStart(GenerateLocationCards));
+        threadLocationCard.Start();
+    }
+
+    void GenerateLocationCards()
+    {
+        Dispatcher.Dispatch(() => weatherLocationData.Children.Clear());
         foreach (var item in Utilities.AppResources.settings.WeatherLocations)
         {
             WeatherLocationsView view = new WeatherLocationsView
@@ -98,7 +105,7 @@ public partial class WeatherSettings : ContentPage
             };
             view.Clicked += OptionsBtnClicked;
 
-            weatherLocationData.Children.Add(view);
+            Dispatcher.Dispatch(() => weatherLocationData.Children.Add(view));
         }
     }
 
