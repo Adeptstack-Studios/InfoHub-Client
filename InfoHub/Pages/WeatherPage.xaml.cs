@@ -11,17 +11,7 @@ public partial class WeatherPage : ContentPage
     {
         InitializeComponent();
         locationIndex = mainWeather;
-        if (Web.IsConnectedToInternet())
-        {
-            WeatherLocationRefresh();
-        }
-        else
-        {
-            this.Title = "No internet!";
-            refresh.IsEnabled = false;
-            loading.IsVisible = true;
-            busy.IsRunning = true;
-        }
+        WeatherLocationRefresh();
     }
 
     private void refresh_Refreshing(object sender, EventArgs e)
@@ -33,15 +23,20 @@ public partial class WeatherPage : ContentPage
     {
         Thread weatherThread = new Thread(delegate ()
         {
-            if (AppResources.settings.WeatherLocations.Count > 0 && Web.IsConnectedToInternet())
+            Dispatcher.Dispatch(() =>
+            {
+                loading.IsVisible = true;
+                busy.IsRunning = true;
+            });
+            bool isConnected = Web.IsConnectedToInternet();
+
+            if (AppResources.settings.WeatherLocations.Count > 0 && isConnected)
             {
                 RefreshWeatherData(Utilities.AppResources.settings.WeatherLocations[locationIndex].Latitude, Utilities.AppResources.settings.WeatherLocations[locationIndex].Longitude);
                 Dispatcher.Dispatch(() =>
                 {
                     this.Title = AppResources.settings.WeatherLocations[locationIndex].Name;
                     refresh.IsEnabled = false;
-                    loading.IsVisible = true;
-                    busy.IsRunning = true;
                 });
             }
             else if (AppResources.settings.WeatherLocations.Count <= 0)
@@ -50,15 +45,11 @@ public partial class WeatherPage : ContentPage
                 {
                     this.Title = "No locations!";
                     refresh.IsEnabled = false;
-                    loading.IsVisible = true;
-                    busy.IsRunning = true;
                 });
             }
             else
             {
-                this.Title = "No internet!";
-                loading.IsVisible = true;
-                busy.IsRunning = true;
+                Dispatcher.Dispatch(() => this.Title = "No internet!");
             }
         });
         weatherThread.Start();
@@ -94,6 +85,7 @@ public partial class WeatherPage : ContentPage
         Thread sunProgressThread = new Thread(delegate ()
         {
             Thread.Sleep(2000);
+            ShowStatus(weather);
             SunProgress(sunr, suns);
         });
         Thread dailyThread = new Thread(delegate ()
@@ -133,7 +125,6 @@ public partial class WeatherPage : ContentPage
         //hourlyForecast
         Dispatcher.Dispatch(() => forecastHourly.Children.Clear());
         int currentHour = DateTime.Now.Hour + 24;
-        bool foundStatus = false;
         for (int i = currentHour; i < currentHour + 25; i++)
         {
             DateTime time = DateTime.Parse(weather.hourly.time[i]);
@@ -148,33 +139,6 @@ public partial class WeatherPage : ContentPage
                 Humidity = weather.hourly.relative_humidity_2m[i] + weather.hourly_units.relative_humidity_2m,
             };
             Dispatcher.Dispatch(() => forecastHourly.Children.Add(hourlyForecast));
-
-            if (!foundStatus)
-            {
-                switch (time.Hour)
-                {
-                    case 2:
-                        Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 0).text} at night at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
-                        foundStatus = true;
-                        break;
-                    case 8:
-                        Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 1).text} in the morning at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
-                        foundStatus = true;
-                        break;
-                    case 12:
-                        Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 1).text} at noon at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
-                        foundStatus = true;
-                        break;
-                    case 16:
-                        Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 1).text} in the afternoon at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
-                        foundStatus = true;
-                        break;
-                    case 20:
-                        Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 0).text} in the evening at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
-                        foundStatus = true;
-                        break;
-                }
-            }
         }
 
         Dispatcher.Dispatch(() =>
@@ -183,6 +147,41 @@ public partial class WeatherPage : ContentPage
             loading.IsVisible = false;
             busy.IsRunning = false;
         });
+    }
+
+    void ShowStatus(WeatherData weather)
+    {
+        int currentHour = DateTime.Now.Hour + 24;
+
+        for (int i = currentHour; i < currentHour + 8; i++)
+        {
+            DateTime time = DateTime.Parse(weather.hourly.time[i]);
+            if (time.Hour == 2)
+            {
+                Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 0).text} at night at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
+                break;
+            }
+            else if (time.Hour == 8)
+            {
+                Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 1).text} in the morning at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
+                break;
+            }
+            else if (time.Hour == 12)
+            {
+                Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 1).text} at noon at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
+                break;
+            }
+            else if (time.Hour == 16)
+            {
+                Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 1).text} in the afternoon at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
+                break;
+            }
+            else if (time.Hour == 20)
+            {
+                Dispatcher.Dispatch(() => futureStatus.Text = $"{WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], 0).text} in the evening at {weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m}");
+                break;
+            }
+        }
     }
 
     void GenerateDailyWeatherCrads(WeatherData weather)
