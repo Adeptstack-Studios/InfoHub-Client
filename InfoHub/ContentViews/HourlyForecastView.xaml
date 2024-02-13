@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InfoHub.ContentViews.HourlyForecastView"
+             x:Name="this">
+    <Border Margin="15,5,0,7.5" StrokeShape="RoundRectangle 7" StrokeThickness="0" MinimumWidthRequest="64" >
+        <VerticalStackLayout BindingContext="{x:Reference this}">
+            <Label Text="{Binding Time, FallbackValue='00:00'}" FontFamily="OpenSansRegular" HorizontalOptions="Center" FontSize="12" Opacity="0.7" />
+            <Image Source="{Binding WeatherCodeIcon, FallbackValue='Resources/Images/sonne.png'}" Margin="0,5" HorizontalOptions="Center" WidthRequest="48" />
+            <Label Text="{Binding Temperature, FallbackValue='-??°C'}" FontFamily="OpenSansSemibold" FontSize="18" HorizontalOptions="Center" />
+            <HorizontalStackLayout Opacity="0.7" HorizontalOptions="Center" Margin="0,10,0,0" >
+                <Image Source="Resources/Images/feuchtigkeitsmesser.png" HeightRequest="14" Margin="0,0,5,0" />
+                <Label Text="{Binding Humidity, FallbackValue='???%'}" FontFamily="OpenSansRegular" FontSize="13" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

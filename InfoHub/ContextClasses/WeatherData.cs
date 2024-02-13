@@ -67,16 +67,17 @@
 
     public class Hourly
     {
-        public string[] time { get; set; } = new string[72];
-        public float[] temperature_2m { get; set; } = new float[72];
-        public int[] relative_humidity_2m { get; set; } = new int[72];
-        public float[] precipitation { get; set; } = new float[72];
-        public int[] weather_code { get; set; } = new int[72];
+        public string[] time { get; set; } = new string[192];
+        public float[] temperature_2m { get; set; } = new float[192];
+        public int[] relative_humidity_2m { get; set; } = new int[192];
+        public float[] precipitation { get; set; } = new float[192];
+        public int[] weather_code { get; set; } = new int[192];
     }
 
     public class Daily_Units
     {
         public string time { get; set; } = "";
+        public string weather_code { get; set; } = "";
         public string temperature_2m_max { get; set; } = "";
         public string temperature_2m_min { get; set; } = "";
         public string sunrise { get; set; } = "";
@@ -95,21 +96,22 @@
 
     public class Daily
     {
-        public string[] time { get; set; } = new string[3];
-        public float[] temperature_2m_max { get; set; } = new float[3];
-        public float[] temperature_2m_min { get; set; } = new float[3];
-        public string[] sunrise { get; set; } = new string[3];
-        public string[] sunset { get; set; } = new string[3];
-        public float[] daylight_duration { get; set; } = new float[3];
-        public float[] sunshine_duration { get; set; } = new float[3];
-        public float[] uv_index_max { get; set; } = new float[3];
-        public float[] precipitation_sum { get; set; } = new float[3];
-        public float[] rain_sum { get; set; } = new float[3];
-        public float[] showers_sum { get; set; } = new float[3];
-        public float[] snowfall_sum { get; set; } = new float[3];
-        public float[] precipitation_hours { get; set; } = new float[3];
-        public float[] wind_speed_10m_max { get; set; } = new float[3];
-        public int[] wind_direction_10m_dominant { get; set; } = new int[3];
+        public string[] time { get; set; } = new string[8];
+        public int[] weather_code { get; set; } = new int[8];
+        public float[] temperature_2m_max { get; set; } = new float[8];
+        public float[] temperature_2m_min { get; set; } = new float[8];
+        public string[] sunrise { get; set; } = new string[8];
+        public string[] sunset { get; set; } = new string[8];
+        public float[] daylight_duration { get; set; } = new float[8];
+        public float[] sunshine_duration { get; set; } = new float[8];
+        public float[] uv_index_max { get; set; } = new float[8];
+        public float[] precipitation_sum { get; set; } = new float[8];
+        public float[] rain_sum { get; set; } = new float[8];
+        public float[] showers_sum { get; set; } = new float[8];
+        public float[] snowfall_sum { get; set; } = new float[8];
+        public float[] precipitation_hours { get; set; } = new float[8];
+        public float[] wind_speed_10m_max { get; set; } = new float[8];
+        public int[] wind_direction_10m_dominant { get; set; } = new int[8];
     }
 
 }

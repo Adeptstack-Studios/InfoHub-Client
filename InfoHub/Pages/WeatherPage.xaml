@@ -5,14 +5,14 @@
              Title="Weather">
     <RefreshView x:Name="refresh" Refreshing="refresh_Refreshing">
         <ScrollView>
-            <VerticalStackLayout>
+            <Grid>
                 <VerticalStackLayout MaximumWidthRequest="600" >
                     <Grid>
                         <HorizontalStackLayout HorizontalOptions="Start" Margin="30,20,30,0">
                             <Image Source="Resources/Images/fog.png" x:Name="weatherIcon" />
                             <VerticalStackLayout VerticalOptions="Center" >
                                 <Label x:Name="tempCrt" Text="?°C" FontSize="38" Margin="15,0,0,0" FontFamily="OpenSansSemibold" />
-                                <Label x:Name="weatherCodeCrt" Text="?" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,0,0" FontFamily="OpenSans" />
+                                <Label x:Name="weatherCodeCrt" Text="?" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,0,0" FontFamily="OpenSansRegular" />
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
                         <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="Start">
@@ -27,17 +27,29 @@
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="30,30,30,0" >
-                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="200" >
-                            <HorizontalStackLayout x:Name="hourlyForecast" >
+                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="100" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" >
+                                    <Label Text="Überwiegen bewölkt" x:Name="futureStatus" VerticalOptions="End" Margin="20,7.5" FontFamily="OpenSansSemibold" />
+                                    <Grid HeightRequest="1" Margin="15,0,15,0" BackgroundColor="White" VerticalOptions="End" Opacity="0.3" />
+                                </Grid>
+                                <ScrollView Orientation="Horizontal" Grid.Row="1" >
+                                    <HorizontalStackLayout x:Name="forecastHourly" Margin="0,10" >
 
-                            </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                </ScrollView>
+                            </Grid>
                         </Border>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="30,30,30,0" >
-                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="150" >
-                            <VerticalStackLayout x:Name="dayForecast">
-
+                        <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="100" >
+                            <VerticalStackLayout x:Name="forecastDaily" Margin="5,10,5,17.5" >
+                                
                             </VerticalStackLayout>
                         </Border>
                     </VerticalStackLayout>
@@ -99,7 +111,7 @@
                         <Border WidthRequest="150" HeightRequest="90" StrokeShape="RoundRectangle 15" Margin="0,0,0,15">
                             <Grid>
                                 <HorizontalStackLayout Margin="7.5,5" Opacity="0.6" VerticalOptions="Start" >
-                                    <Image Source="Resources/Images/hoehe.png" WidthRequest="15" HeightRequest="15" />
+                                    <Image Source="Resources/Images/sonne.png" WidthRequest="15" HeightRequest="15" />
                                     <Label Text="Sunny hours" FontSize="11.5" Margin="5,0" />
                                 </HorizontalStackLayout>
                                 <Label x:Name="sunnyHours" Text="?m" FontSize="24" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
@@ -110,20 +122,46 @@
                     <VerticalStackLayout Margin="30,0,30,0" >
                         <Border StrokeShape="RoundRectangle 15" MinimumHeightRequest="150" >
                             <Grid >
+                                <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Start" Margin="20,10" Opacity="0.6" >
+                                    <HorizontalStackLayout>
+                                        <Image Source="/Resources/Images/sonnenaufgang.png" HeightRequest="24" WidthRequest="24" />
+                                        <Label Text="Sunrise" VerticalOptions="Center" Margin="10,0" FontFamily="OpenSansSemibold" />
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="Sunset" VerticalOptions="Center" Margin="10,0" FontFamily="OpenSansSemibold" />
+                                        <Image Source="/Resources/Images/sonnenuntergang.png" HeightRequest="24" WidthRequest="24" />
+                                    </HorizontalStackLayout>
+                                </FlexLayout>
+
+                                <Grid Margin="70,0" >
+                                    <Grid x:Name="gesSunProgress" HeightRequest="1" BackgroundColor="White" Opacity="0.5" Margin="0,0,0,5" />
+                                    <Grid x:Name="sunProgress" HeightRequest="1" BackgroundColor="Yellow" HorizontalOptions="Start" Opacity="0.5" Margin="0,0,0,5" />
+                                    <Image x:Name="sun" Source="Resources/Images/sonne.png" WidthRequest="48" HeightRequest="48" HorizontalOptions="Start" />
+                                </Grid>
+                                <Border StrokeThickness="0" HeightRequest="50" WidthRequest="70" HorizontalOptions="Start" Margin="1,0,0,0" IsVisible="True" />
+                                <Border StrokeThickness="0" HeightRequest="50" WidthRequest="70" HorizontalOptions="End" Margin="0,0,1,0" IsVisible="True" />
                                 
+                                <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="End" Margin="20,15" >
+                                    <Label x:Name="sunrise" Text="7:37" VerticalOptions="Center" Margin="10,5" FontFamily="OpenSansSemibold" FontSize="20" />
+                                    <Label x:Name="sunset" Text="17:23" VerticalOptions="Center" Margin="10,5" FontFamily="OpenSansSemibold" FontSize="20" />
+                                </FlexLayout>
                             </Grid>
                         </Border>
                     </VerticalStackLayout>
 
                     <FlexLayout JustifyContent="SpaceBetween" Margin="40,30,40,15" >
-                        <HorizontalStackLayout >
-                            <Image Source="Resources/Images/om.png" WidthRequest="16" Margin="0,0,4,0" />
-                            <Label FontFamily="OpenSans" Text="open-meteo.com" VerticalOptions="Center" />
+                        <HorizontalStackLayout VerticalOptions="Center" >
+                            <Image Source="Resources/Images/om.png" WidthRequest="16" HeightRequest="16" />
+                            <Button FontFamily="OpenSansRegular" Text="open-meteo.com" HeightRequest="35" BackgroundColor="Transparent" FontSize="12" x:Name="meteoBtn" Clicked="meteoBtn_Clicked" />
                         </HorizontalStackLayout>
-                        <Label FontFamily="OpenSans" Text="11.02.2024, 20:47" VerticalOptions="Center" x:Name="lastRefresh" />
+                        <Label FontFamily="OpenSansRegular" Text="11.02.2024, 20:47" VerticalOptions="Center" x:Name="lastRefresh" />
                     </FlexLayout>
                 </VerticalStackLayout>
-            </VerticalStackLayout>
+                <Grid BackgroundColor="Black" x:Name="loading" IsVisible="False" >
+                    <ActivityIndicator x:Name="busy" IsRunning="True" VerticalOptions="Start" Color="White" Margin="0,70,0,0" />
+                    <Button HorizontalOptions="End" VerticalOptions="Start" WidthRequest="150" HeightRequest="100" BackgroundColor="Transparent" />
+                </Grid>
+            </Grid>
         </ScrollView>
     </RefreshView>
 </ContentPage>

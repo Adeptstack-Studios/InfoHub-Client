@@ -7,7 +7,7 @@ namespace InfoHub
 {
     public partial class MainPage : ContentPage
     {
-
+        int weatherIndex = 0;
         public MainPage()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace InfoHub
                 {
                     RefreshWeatherData(Utilities.AppResources.settings.WeatherLocations[i].Latitude, Utilities.AppResources.settings.WeatherLocations[i].Longitude);
                     this.Title = Utilities.AppResources.settings.WeatherLocations[i].Name;
+                    weatherIndex = i;
                     refresh.IsRefreshing = false;
                     return;
                 }
@@ -41,7 +42,7 @@ namespace InfoHub
         {
             WeatherData weather = Web.GetWeatherData(latitude, longitude);
             tempCrt.Text = weather.current.temperature_2m.ToString() + weather.current_units.temperature_2m;
-            tempMinMax.Text = weather.daily.temperature_2m_min[0].ToString() + weather.daily_units.temperature_2m_min + " / " + weather.daily.temperature_2m_max[0].ToString() + weather.daily_units.temperature_2m_max;
+            tempMinMax.Text = weather.daily.temperature_2m_min[1].ToString() + weather.daily_units.temperature_2m_min + " / " + weather.daily.temperature_2m_max[1].ToString() + weather.daily_units.temperature_2m_max;
             humidityCrt.Text = weather.current.relative_humidity_2m.ToString() + weather.current_units.relative_humidity_2m;
             var weatherTitle = Utilities.WeatherUtilities.GetWeatherCodeText(weather.current.weather_code, weather.current.is_day);
             weatherCodeCrt.Text = weatherTitle.text;
@@ -69,7 +70,7 @@ namespace InfoHub
 
         private void weatherBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new WeatherPage());
+            Navigation.PushAsync(new WeatherPage(weatherIndex));
         }
 
         private void Settings_Clicked(object sender, EventArgs e)

@@ -6,7 +6,7 @@
     <VerticalStackLayout>
         <FlexLayout Margin="20,20,20,0" >
             <Image Source="Resources/Images/adeptstack.png" WidthRequest="64" />
-            <Label Text="Adeptstack" VerticalOptions="End" Margin="6.5,0,5,1.5" FontSize="24" FontFamily="OpenSans" />
+            <Label Text="Adeptstack" VerticalOptions="End" Margin="6.5,0,5,1.5" FontSize="24" FontFamily="OpenSansSemibold" />
         </FlexLayout>
         <Label Text="Publisher and developer of the app" FontSize="14" Margin="20,20,20,0" Opacity="0.6" />
         <Button Margin="20,0" HeightRequest="80" CornerRadius="10" BorderWidth="2" BorderColor="Gray" x:Name="Imprint" Text="imprint" Clicked="Imprint_Clicked" />

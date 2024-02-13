@@ -4,7 +4,7 @@
              x:Class="InfoHub.Pages.GeneralWeatherSettingsPage"
              Title="Weather settings">
     <VerticalStackLayout Margin="30,20,20,0" >
-        <Label Text="Units" FontFamily="OpenSans" Opacity="0.6" FontSize="15" />
+        <Label Text="Units" FontFamily="OpenSansSemibold" Opacity="0.6" FontSize="15" />
         <Border HeightRequest="155" StrokeShape="RoundRectangle 10" >
             <VerticalStackLayout HorizontalOptions="Start" Margin="20,10" >
                 <HorizontalStackLayout Opacity="0.6" VerticalOptions="Start" >
