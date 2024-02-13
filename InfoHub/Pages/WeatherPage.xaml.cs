@@ -11,7 +11,17 @@ public partial class WeatherPage : ContentPage
     {
         InitializeComponent();
         locationIndex = mainWeather;
-        WeatherLocationRefresh();
+        if (Web.IsConnectedToInternet())
+        {
+            WeatherLocationRefresh();
+        }
+        else
+        {
+            this.Title = "No internet!";
+            refresh.IsEnabled = false;
+            loading.IsVisible = true;
+            busy.IsRunning = true;
+        }
     }
 
     private void refresh_Refreshing(object sender, EventArgs e)
@@ -23,7 +33,7 @@ public partial class WeatherPage : ContentPage
     {
         Thread weatherThread = new Thread(delegate ()
         {
-            if (AppResources.settings.WeatherLocations.Count > 0)
+            if (AppResources.settings.WeatherLocations.Count > 0 && Web.IsConnectedToInternet())
             {
                 RefreshWeatherData(Utilities.AppResources.settings.WeatherLocations[locationIndex].Latitude, Utilities.AppResources.settings.WeatherLocations[locationIndex].Longitude);
                 Dispatcher.Dispatch(() =>
@@ -34,7 +44,7 @@ public partial class WeatherPage : ContentPage
                     busy.IsRunning = true;
                 });
             }
-            else
+            else if (AppResources.settings.WeatherLocations.Count <= 0)
             {
                 Dispatcher.Dispatch(() =>
                 {
@@ -43,6 +53,12 @@ public partial class WeatherPage : ContentPage
                     loading.IsVisible = true;
                     busy.IsRunning = true;
                 });
+            }
+            else
+            {
+                this.Title = "No internet!";
+                loading.IsVisible = true;
+                busy.IsRunning = true;
             }
         });
         weatherThread.Start();
@@ -106,7 +122,7 @@ public partial class WeatherPage : ContentPage
         }
         else if (progressWidth < -50)
         {
-            progressWidth = -50;
+            progressWidth = -25;
         }
         Dispatcher.Dispatch(() => sun.Margin = new Thickness(-25 + progressWidth, 0, 0, 0));
         Dispatcher.Dispatch(() => sunProgress.WidthRequest = progressWidth);
@@ -130,7 +146,6 @@ public partial class WeatherPage : ContentPage
                 WeatherCodeIcon = WeatherUtilities.GetWeatherCodeText(weather.hourly.weather_code[i], isDay).imgPath,
                 Temperature = weather.hourly.temperature_2m[i] + weather.hourly_units.temperature_2m,
                 Humidity = weather.hourly.relative_humidity_2m[i] + weather.hourly_units.relative_humidity_2m,
-
             };
             Dispatcher.Dispatch(() => forecastHourly.Children.Add(hourlyForecast));
 

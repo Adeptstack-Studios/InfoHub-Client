@@ -1,5 +1,6 @@
 ﻿using InfoHub.ContextClasses;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 
 namespace InfoHub.Utilities
@@ -53,6 +54,21 @@ namespace InfoHub.Utilities
                 weather = new();
             }
             return weather;
+        }
+
+        public static bool IsConnectedToInternet()
+        {
+            string host = "google.com";
+            bool result = false;
+            Ping p = new Ping();
+            try
+            {
+                PingReply reply = p.Send(host, 3000);
+                if (reply.Status == IPStatus.Success)
+                    return true;
+            }
+            catch { }
+            return result;
         }
     }
 }

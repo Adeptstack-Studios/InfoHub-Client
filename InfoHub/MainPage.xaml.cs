@@ -16,7 +16,14 @@ namespace InfoHub
             Utilities.AppResources.settings = Data.LoadSettings();
             Utilities.AppResources.Timer();
 
-            MainWeatherLocation();
+            if (Web.IsConnectedToInternet())
+            {
+                MainWeatherLocation();
+            }
+            else
+            {
+                this.Title = "No internet!";
+            }
 
             Thread threadSensorData = new Thread(new ThreadStart(ThreadGetSensorData));
             threadSensorData.Start();
