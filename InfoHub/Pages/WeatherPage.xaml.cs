@@ -23,14 +23,27 @@ public partial class WeatherPage : ContentPage
     {
         Thread weatherThread = new Thread(delegate ()
         {
-            RefreshWeatherData(Utilities.AppResources.settings.WeatherLocations[locationIndex].Latitude, Utilities.AppResources.settings.WeatherLocations[locationIndex].Longitude);
-            Dispatcher.Dispatch(() =>
+            if (AppResources.settings.WeatherLocations.Count > 0)
             {
-                this.Title = AppResources.settings.WeatherLocations[locationIndex].Name;
-                refresh.IsEnabled = false;
-                loading.IsVisible = true;
-                busy.IsRunning = true;
-            });
+                RefreshWeatherData(Utilities.AppResources.settings.WeatherLocations[locationIndex].Latitude, Utilities.AppResources.settings.WeatherLocations[locationIndex].Longitude);
+                Dispatcher.Dispatch(() =>
+                {
+                    this.Title = AppResources.settings.WeatherLocations[locationIndex].Name;
+                    refresh.IsEnabled = false;
+                    loading.IsVisible = true;
+                    busy.IsRunning = true;
+                });
+            }
+            else
+            {
+                Dispatcher.Dispatch(() =>
+                {
+                    this.Title = "No locations!";
+                    refresh.IsEnabled = false;
+                    loading.IsVisible = true;
+                    busy.IsRunning = true;
+                });
+            }
         });
         weatherThread.Start();
         lastRefresh.Text = $"{DateTime.Now.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}";
@@ -71,15 +84,10 @@ public partial class WeatherPage : ContentPage
         {
             Thread.Sleep(2000);
             GenerateDailyWeatherCrads(weather);
-        });
-        Thread hourlyThread = new Thread(delegate ()
-        {
-            Thread.Sleep(2000);
             GenerateHourlyWeatherCards(weather, sunr, suns);
         });
         sunProgressThread.Start();
         dailyThread.Start();
-        hourlyThread.Start();
 
         Dispatcher.Dispatch(() => refresh.IsRefreshing = false);
     }

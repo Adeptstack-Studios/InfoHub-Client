@@ -10,7 +10,7 @@
         </FlexLayout>
         <Label Text="Publisher and developer of the app" FontSize="14" Margin="20,20,20,0" Opacity="0.6" />
         <Button Margin="20,0" HeightRequest="80" CornerRadius="10" BorderWidth="2" BorderColor="Gray" x:Name="Imprint" Text="imprint" Clicked="Imprint_Clicked" />
-        <Button Margin="20,0" HeightRequest="80" CornerRadius="10" BorderWidth="2" BorderColor="Gray" x:Name="privacy" Text="Privacy" Clicked="privacy_Clicked" />
+        <Button Margin="20,10" HeightRequest="80" CornerRadius="10" BorderWidth="2" BorderColor="Gray" x:Name="privacy" Text="Privacy" Clicked="privacy_Clicked" />
         <Button Margin="20,0" HeightRequest="80" CornerRadius="10" BorderWidth="2" BorderColor="Gray" x:Name="License" Text="License" Clicked="License_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

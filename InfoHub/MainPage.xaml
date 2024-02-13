@@ -69,8 +69,8 @@
 
                 <Grid Grid.Row="1">
                     <FlexLayout JustifyContent="SpaceEvenly" Margin="0,0,0,70" MaximumWidthRequest="600" VerticalOptions="Center" Wrap="Wrap" >
-                        <Button Text="Sensors" x:Name="NavToSensorsBtn" Clicked="NavToSensorsBtn_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
-                        <Button Text="Lights" x:Name="NavToLights" Clicked="NavToLights_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
+                        <Button Margin="0,0,0,10" Text="Sensors" x:Name="NavToSensorsBtn" Clicked="NavToSensorsBtn_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
+                        <Button Margin="0,0,0,10" Text="Lights" x:Name="NavToLights" Clicked="NavToLights_Clicked" VerticalOptions="Start" WidthRequest="250" HeightRequest="100" />
                     </FlexLayout>
                     <Grid HeightRequest="70" VerticalOptions="End" HorizontalOptions="Center" >
                         <Border StrokeThickness="0" StrokeShape="RoundRectangle 10" MaximumWidthRequest="400" Margin="0,0,0,10" >
