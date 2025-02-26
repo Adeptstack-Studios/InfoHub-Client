@@ -146,6 +146,8 @@ public partial class WeatherPage : ContentPage
             refresh.IsEnabled = true;
             loading.IsVisible = false;
             busy.IsRunning = false;
+            navLeft.IsEnabled = true;
+            navRight.IsEnabled = true;
         });
     }
 

@@ -1,3 +1,4 @@
+using Microsoft.Maui.ApplicationModel;
 namespace InfoHub.Pages;
 
 public partial class LegalPage : ContentPage

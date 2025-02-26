@@ -1,4 +1,5 @@
-﻿namespace InfoHub
+﻿using Microsoft.Maui.ApplicationModel;
+namespace InfoHub
 {
     public partial class AppShell : Shell
     {

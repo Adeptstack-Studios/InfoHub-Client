@@ -159,7 +159,6 @@
                 </VerticalStackLayout>
                 <Grid BackgroundColor="Black" x:Name="loading" IsVisible="False" >
                     <ActivityIndicator x:Name="busy" IsRunning="True" VerticalOptions="Start" Color="White" Margin="0,70,0,0" />
-                    <Button HorizontalOptions="End" VerticalOptions="Start" WidthRequest="150" HeightRequest="100" BackgroundColor="Transparent" />
                 </Grid>
             </Grid>
         </ScrollView>

@@ -2,6 +2,7 @@
 using InfoHub.Enums;
 using InfoHub.Pages;
 using InfoHub.Utilities;
+using Microsoft.Maui.ApplicationModel;
 
 namespace InfoHub
 {

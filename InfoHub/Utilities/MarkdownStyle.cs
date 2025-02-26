@@ -1,4 +1,5 @@
-﻿namespace InfoHub.Utilities
+﻿using Microsoft.Maui.ApplicationModel;
+namespace InfoHub.Utilities
 {
     class MarkdownStyle
     {
