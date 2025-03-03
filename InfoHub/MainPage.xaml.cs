@@ -2,7 +2,6 @@
 using InfoHub.Enums;
 using InfoHub.Pages;
 using InfoHub.Utilities;
-using Microsoft.Maui.ApplicationModel;
 
 namespace InfoHub
 {
@@ -24,6 +23,12 @@ namespace InfoHub
             else
             {
                 this.Title = "No internet!";
+            }
+
+            if (string.IsNullOrEmpty(AppResources.settings.AuthenticationKey))
+            {
+                AppResources.settings.AuthenticationKey = AppResources.GenerateAuthenticationKey();
+                Data.SaveSettings(AppResources.settings);
             }
 
             Thread threadSensorData = new Thread(new ThreadStart(ThreadGetSensorData));
@@ -61,13 +66,25 @@ namespace InfoHub
 
         void ThreadGetSensorData()
         {
-            foreach (var item in Utilities.AppResources.sensors)
+            try
             {
-                if (item.SensorType == SensorType.TemperatureAndPressure)
+                foreach (var item in AppResources.sensors)
                 {
-                    SensorDataTHP sensorData = Web.GetSensorDataTHP(item.IpAddress, item.Port);
-                    item.SensorData = sensorData;
+                    if (item.SensorType == SensorType.TemperatureAndPressure)
+                    {
+                        SensorDataTHP sensorData = Web.GetSensorDataTHP(item.IpAddress, item.Port);
+                        item.SensorData = sensorData;
+                    }
+                    else if (item.SensorType == SensorType.DoorContact)
+                    {
+                        SensorDataDC sensorData = Web.GetSensorDataDC(item.IpAddress, item.Port);
+                        item.SensorData = sensorData;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
             }
         }
 

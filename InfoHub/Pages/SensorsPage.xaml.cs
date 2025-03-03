@@ -53,7 +53,8 @@ public partial class SensorsPage : ContentPage
                 Name = nameEntry.Text,
                 IpAddress = ipEntry.Text,
                 Port = portEntry.Text,
-                SensorType = (SensorType)typePicker.SelectedIndex
+                SensorType = (SensorType)typePicker.SelectedIndex,
+                SensorData = typePicker.SelectedIndex == 0 ? new SensorDataTHP() : new SensorDataDC(),
             });
         }
         else if (isEdit && CheckSensorMatches() == 0)
@@ -98,15 +99,28 @@ public partial class SensorsPage : ContentPage
         Dispatcher.Dispatch(() => flexl.Children.Clear());
         foreach (var item in Utilities.AppResources.sensors)
         {
-            if (item.SensorType == SensorType.TemperatureAndPressure)
+            if (item.SensorType == SensorType.TemperatureAndPressure && item.SensorData is SensorDataTHP thpData)
             {
                 SensorCardTHP sensorCard = new SensorCardTHP
                 {
                     Name = item.Name,
-                    Temperature = item.SensorData.temperature.ToString() + "°C",
-                    Humidity = item.SensorData.humidity.ToString() + "%",
-                    Pressure = item.SensorData.pressure.ToString() + "hPa",
-                    Altitude = item.SensorData.altitude.ToString() + "m",
+                    Temperature = thpData.temperature.ToString() + "°C",
+                    Humidity = thpData.humidity.ToString() + "%",
+                    Pressure = thpData.pressure.ToString() + "hPa",
+                    Altitude = thpData.altitude.ToString() + "m",
+                };
+                sensorCard.Clicked += OptionsBtnClicked;
+
+                Dispatcher.Dispatch(() => flexl.Children.Add(sensorCard));
+            }
+            else if (item.SensorType == SensorType.DoorContact && item.SensorData is SensorDataDC dcData)
+            {
+                SensorCardDC sensorCard = new SensorCardDC
+                {
+                    Name = item.Name,
+                    IsOpen = dcData.IsOpen,
+                    IsAlarm = dcData.IsAlarm,
+                    Alarm = dcData.Alarm,
                 };
                 sensorCard.Clicked += OptionsBtnClicked;
 

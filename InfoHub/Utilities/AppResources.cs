@@ -11,7 +11,7 @@ namespace InfoHub.Utilities
         public static void Timer()
         {
             var timer = Application.Current.Dispatcher.CreateTimer();
-            timer.Interval = TimeSpan.FromSeconds(60);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += (s, e) =>
             {
                 Thread threadSensorData = new Thread(new ThreadStart(ThreadGetSensorData));
@@ -31,12 +31,22 @@ namespace InfoHub.Utilities
                         SensorDataTHP sensorData = Web.GetSensorDataTHP(item.IpAddress, item.Port);
                         item.SensorData = sensorData;
                     }
+                    else if (item.SensorType == SensorType.DoorContact)
+                    {
+                        SensorDataDC sensorData = Web.GetSensorDataDC(item.IpAddress, item.Port);
+                        item.SensorData = sensorData;
+                    }
                 }
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
+        }
+
+        public static string GenerateAuthenticationKey()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }

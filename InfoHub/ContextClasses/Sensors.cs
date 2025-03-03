@@ -1,4 +1,5 @@
 ﻿using InfoHub.Enums;
+using System.Text.Json.Serialization;
 
 namespace InfoHub.ContextClasses
 {
@@ -9,6 +10,8 @@ namespace InfoHub.ContextClasses
         public string IpAddress { get; set; }
         public string Port { get; set; }
         public SensorType SensorType { get; set; }
-        public SensorDataTHP SensorData { get; set; } = new SensorDataTHP();
+
+        [JsonConverter(typeof(SensorDataConverter))]
+        public SensorData SensorData { get; set; }
     }
 }

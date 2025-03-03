@@ -3,5 +3,6 @@
     public enum SensorType
     {
         TemperatureAndPressure,
+        DoorContact
     }
 }

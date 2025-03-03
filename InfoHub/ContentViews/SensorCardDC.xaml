@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InfoHub.ContentViews.SensorCardDC"
+             x:Name="this">
+
+    <Border WidthRequest="350" HeightRequest="250" StrokeShape="RoundRectangle 28" BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" Margin="0,40,0,0" >
+        <Grid BindingContext="{x:Reference this}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}">
+                <Image Source="Resources/Images/thermometer.png" HorizontalOptions="Start" WidthRequest="25" Margin="10,0" />
+                <Label Text="{Binding Name, FallbackValue='Name'}" FontFamily="OpenSansSemibold" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Button Text="&#xf142;" FontFamily="FAsolid" HorizontalOptions="End" WidthRequest="55" Clicked="optionsBtn_Clicked" ToolTipProperties.Text="Manage" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" Margin="0,0" />
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <HorizontalStackLayout Margin="15,10" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/thermometer.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="IsOpen" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding IsOpen, FallbackValue='error'}" Margin="11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <HorizontalStackLayout Margin="15,10" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/feuchtigkeitsmesser.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="IsAlarm" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding IsAlarm, FallbackValue='error'}" Margin="11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0">
+                <HorizontalStackLayout Margin="15,0" Opacity="0.6" VerticalOptions="Start" >
+                    <Image Source="Resources/Images/luftdruck.png" WidthRequest="15" HeightRequest="15" />
+                    <Label Text="Alarm" FontSize="12" Margin="5,0" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding Alarm, FallbackValue='error'}" Margin="11,-10,11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+            </Grid>
+
+        </Grid>
+    </Border>
+</ContentView>

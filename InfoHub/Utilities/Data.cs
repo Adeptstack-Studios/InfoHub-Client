@@ -1,6 +1,5 @@
 ﻿using InfoHub.ContextClasses;
 using System.Text.Json;
-using Microsoft.Maui.Storage;
 
 namespace InfoHub.Utilities
 {
@@ -31,12 +30,13 @@ namespace InfoHub.Utilities
 
         public static void SaveSensors(List<Sensors> sensors)
         {
+            var options = new JsonSerializerOptions { WriteIndented = true };
             string path = FileSystem.Current.AppDataDirectory;
             string fullPath = Path.Combine(path, "InfoHub");
             string filePath = Path.Combine(fullPath, "sensors.json");
 
             StreamWriter sw = new StreamWriter(filePath, false);
-            sw.Write(JsonSerializer.Serialize(sensors));
+            sw.Write(JsonSerializer.Serialize(sensors, options));
             sw.Close();
         }
 
@@ -44,13 +44,14 @@ namespace InfoHub.Utilities
         {
             try
             {
+                var options = new JsonSerializerOptions { WriteIndented = true };
                 string path = FileSystem.Current.AppDataDirectory;
                 string fullPath = Path.Combine(path, "InfoHub");
                 string filePath = Path.Combine(fullPath, "sensors.json");
 
                 string json = File.ReadAllText(filePath);
                 Console.WriteLine(json);
-                return JsonSerializer.Deserialize<List<Sensors>>(json) ?? new();
+                return JsonSerializer.Deserialize<List<Sensors>>(json, options) ?? new();
             }
             catch (Exception e)
             {
@@ -79,6 +80,7 @@ namespace InfoHub.Utilities
                 string filePath = Path.Combine(fullPath, "settings.json");
 
                 string json = File.ReadAllText(filePath);
+                Console.WriteLine(json);
                 return JsonSerializer.Deserialize<Settings>(json) ?? new();
             }
             catch (Exception e)

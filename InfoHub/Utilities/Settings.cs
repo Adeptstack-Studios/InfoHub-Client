@@ -6,5 +6,6 @@ namespace InfoHub.Utilities
     {
         public List<WeatherLocations> WeatherLocations { get; set; } = new List<WeatherLocations>();
         public WeatherSettings WeatherSettings { get; set; } = new WeatherSettings();
+        public string AuthenticationKey { get; set; } = "";
     }
 }

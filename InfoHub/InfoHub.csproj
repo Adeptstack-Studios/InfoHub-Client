@@ -36,6 +36,7 @@
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Resources\AppIcon\adeptstack.ico" />
     <None Remove="Resources\Fonts\FAbrands.otf" />
     <None Remove="Resources\Fonts\FAregular.otf" />
     <None Remove="Resources\Fonts\FAsolid900.otf" />
@@ -90,6 +91,9 @@
     <None Remove="Resources\Images\wolken_night.png" />
   </ItemGroup>
   <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\adeptstack.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
@@ -107,6 +111,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="ContentViews\HourlyForecastView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="ContentViews\SensorCardDC.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="ContentViews\SensorCardTHP.xaml">

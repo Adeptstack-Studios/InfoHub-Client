@@ -33,6 +33,27 @@ namespace InfoHub.Utilities
             return sensorData;
         }
 
+        public static SensorDataDC GetSensorDataDC(string ip, string port)
+        {
+            SensorDataDC sensorData;
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-Version", "1");
+                var stringTask = client.GetStringAsync($"http://{ip}:{port}/get");
+                string getJson = stringTask.Result;
+                sensorData = JsonSerializer.Deserialize<SensorDataDC>(getJson) ?? new();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                sensorData = new SensorDataDC();
+            }
+            return sensorData;
+        }
+
         public static WeatherData GetWeatherData(string latitude, string longitude)
         {
             WeatherData weather;
