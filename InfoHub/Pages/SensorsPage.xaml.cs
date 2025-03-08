@@ -47,7 +47,7 @@ public partial class SensorsPage : ContentPage
                 id = Utilities.AppResources.sensors[Utilities.AppResources.sensors.Count - 1].ID + 1;
             }
 
-            Utilities.AppResources.sensors.Add(new Sensors
+            Sensors s = new Sensors
             {
                 ID = id,
                 Name = nameEntry.Text,
@@ -55,7 +55,21 @@ public partial class SensorsPage : ContentPage
                 Port = portEntry.Text,
                 SensorType = (SensorType)typePicker.SelectedIndex,
                 SensorData = typePicker.SelectedIndex == 0 ? new SensorDataTHP() : new SensorDataDC(),
-            });
+            };
+
+            if (s.SensorType == SensorType.DoorContact)
+            {
+                string st = Web.SetUp(s.IpAddress, s.Port, AppResources.settings.AuthenticationKey);
+                if (st == "success")
+                {
+                    Utilities.AppResources.sensors.Add(s);
+                }
+                else
+                {
+                    lblMessage.Text = st;
+                    message.IsVisible = true;
+                }
+            }
         }
         else if (isEdit && CheckSensorMatches() == 0)
         {
@@ -121,6 +135,9 @@ public partial class SensorsPage : ContentPage
                     IsOpen = dcData.IsOpen,
                     IsAlarm = dcData.IsAlarm,
                     Alarm = dcData.Alarm,
+                    ID = item.ID,
+                    IP = item.IpAddress,
+                    Port = item.Port,
                 };
                 sensorCard.Clicked += OptionsBtnClicked;
 
@@ -160,6 +177,11 @@ public partial class SensorsPage : ContentPage
 
         if (index >= 0)
         {
+            Sensors s = AppResources.sensors[index];
+            if (s.SensorType == SensorType.DoorContact)
+            {
+                Web.Reset(s.IpAddress, s.Port, AppResources.settings.AuthenticationKey);
+            }
             Utilities.AppResources.sensors.RemoveAt(index);
 
             nameEntry.Text = "";

@@ -91,5 +91,97 @@ namespace InfoHub.Utilities
             catch { }
             return result;
         }
+
+        //POST
+        public static string SetUp(string ip, string port, string key)
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-Version", "1");
+                var stringTask = client.GetStringAsync($"http://{ip}:{port}/setup/{key}");
+                return stringTask.Result;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            return "";
+        }
+
+        public static string Reset(string ip, string port, string key)
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-Version", "1");
+                var stringTask = client.GetStringAsync($"http://{ip}:{port}/reset/{key}");
+                return stringTask.Result;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            return "";
+        }
+
+        public static string SetAlarm(bool alarm, string ip, string port, string key)
+        {
+            int alarmInt = alarm ? 1 : 0;
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-Version", "1");
+                var stringTask = client.GetStringAsync($"http://{ip}:{port}/set/{alarmInt}/{key}");
+                return stringTask.Result;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            return "";
+        }
+
+        public static string Mute(string ip, string port, string key)
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-Version", "1");
+                var stringTask = client.GetStringAsync($"http://{ip}:{port}/mute/{key}");
+                return stringTask.Result;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            return "";
+        }
+
+        public static string TestAlarm(string ip, string port, string key)
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-Version", "1");
+                var stringTask = client.GetStringAsync($"http://{ip}:{port}/test/{key}");
+                return stringTask.Result;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            return "";
+        }
     }
 }

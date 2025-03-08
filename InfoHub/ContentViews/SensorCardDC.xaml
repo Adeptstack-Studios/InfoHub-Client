@@ -14,9 +14,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}">
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}">
                 <Image Source="Resources/Images/thermometer.png" HorizontalOptions="Start" WidthRequest="25" Margin="10,0" />
                 <Label Text="{Binding Name, FallbackValue='Name'}" FontFamily="OpenSansSemibold" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 <Button Text="&#xf142;" FontFamily="FAsolid" HorizontalOptions="End" WidthRequest="55" Clicked="optionsBtn_Clicked" ToolTipProperties.Text="Manage" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" Margin="0,0" />
@@ -44,6 +45,12 @@
                 <Label Text="{Binding Alarm, FallbackValue='error'}" Margin="11,-10,11,0" FontSize="22" FontFamily="OpenSansSemibold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
             </Grid>
 
+            <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
+                <VerticalStackLayout>
+                    <CheckBox CheckedChanged="CheckBox_CheckedChanged" x:Name="alarmBox"/>
+                    <Button x:Name="muteTestBtn" Clicked="muteTestBtn_Clicked" Text="Test" />
+                </VerticalStackLayout>
+            </Grid>
         </Grid>
     </Border>
 </ContentView>

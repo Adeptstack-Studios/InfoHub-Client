@@ -1,4 +1,5 @@
 using InfoHub.CustomEventArgs;
+using InfoHub.Utilities;
 
 namespace InfoHub.ContentViews;
 
@@ -23,13 +24,32 @@ public partial class SensorCardDC : ContentView
     public bool IsAlarm
     {
         get => (bool)GetValue(SensorCardDC.IsAlarmProperty);
-        set => SetValue(SensorCardDC.IsAlarmProperty, value);
+        set
+        {
+            SetValue(SensorCardDC.IsAlarmProperty, value);
+            if (value)
+            {
+                muteTestBtn.Text = "Mute";
+            }
+            else
+            {
+                muteTestBtn.Text = "Test";
+            }
+        }
     }
     public bool Alarm
     {
         get => (bool)GetValue(SensorCardDC.AlarmProperty);
-        set => SetValue(SensorCardDC.AlarmProperty, value);
+        set
+        {
+            SetValue(SensorCardDC.AlarmProperty, value);
+            alarmBox.IsChecked = value;
+        }
     }
+
+    public int ID { get; set; }
+    public string IP { get; set; }
+    public string Port { get; set; }
 
     public SensorCardDC()
     {
@@ -57,5 +77,22 @@ public partial class SensorCardDC : ContentView
             Name = Name,
         };
         Clicked?.Invoke(this, args);
+    }
+
+    private void muteTestBtn_Clicked(object sender, EventArgs e)
+    {
+        if (IsAlarm)
+        {
+            Web.Mute(IP, Port, AppResources.settings.AuthenticationKey);
+        }
+        else
+        {
+            Web.TestAlarm(IP, Port, AppResources.settings.AuthenticationKey);
+        }
+    }
+
+    private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        Web.SetAlarm(e.Value, IP, Port, AppResources.settings.AuthenticationKey);
     }
 }
